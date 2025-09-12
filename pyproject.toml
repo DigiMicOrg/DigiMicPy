@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "digimic"
+version = "0.1.0"
+authors = [{name="Yan Zhu", email="yan.zhu@imperial.ac.uk"}]
+description = "digimic"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+
+[project.urls]
+Homepage = "https://github.com/yourname/DigiMic"
+Documentation = "https://yourname.github.io/DigiMic"
+
+[tool.setuptools.packages]
+find = {}  #

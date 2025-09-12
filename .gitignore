@@ -1,0 +1,6 @@
+#
+echo "__pycache__/
+*.py[cod]
+_build/
+.ipynb_checkpoints/
+.env" > .gitignore

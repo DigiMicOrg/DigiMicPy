@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: content/intro
+chapters:
+- file: content/theo
+- file: content/details
+- file: content/useinfo
+- file: content/analysisinfo
