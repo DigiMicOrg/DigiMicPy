@@ -237,7 +237,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -254,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/theo.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/theo.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,8 +389,8 @@
 <section id="microbiological-consumer-resource-model-micrm">
 <h2>Microbiological Consumer - Resource Model (MiCRM)<a class="headerlink" href="#microbiological-consumer-resource-model-micrm" title="Link to this heading">#</a></h2>
 <p>The core framework of DigiMic is based on a general consumer-resource model (the ‘’Microbial Consumer-Resource Model’’, aka MiCRM), which tracks biomass fluxes and dynamics in the community by accounting for resource uptake, metabolic by-product secretion &amp; cross-feeding, and maintenance respiration. Species within the community compete through the exploitation of resources and cross-feed through the secretion of metabolic by-products, which replenish the resource pool. For a community of <span class="math notranslate nohighlight">\(N\)</span> species (or ‘’strains’’) and <span class="math notranslate nohighlight">\(M\)</span> resource types, the MiCRM is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abdb359e-fe36-4071-bd40-ff65cc1e3de5">
-<span class="eqno">(1)<a class="headerlink" href="#equation-abdb359e-fe36-4071-bd40-ff65cc1e3de5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d9654617-b9cd-4ad9-a139-1f13f6ffd195">
+<span class="eqno">(1)<a class="headerlink" href="#equation-d9654617-b9cd-4ad9-a139-1f13f6ffd195" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}
     \frac{dC_i}{dt} &amp;= \sum_{\alpha = 0}^{M} C_i R_{\alpha} u_{i\alpha}  (1 - \lambda_{\alpha}) - C_i m_i \\
     \frac{dR_\alpha}{dt} &amp;= \rho_{\alpha} - R_{\alpha} \omega_{\alpha} - \sum_{i = 0}^{N} C_i R_{\alpha} u_{i\alpha} + \sum_{i = 0}^{N} \sum_{\beta = 0}^{M} C_i R_{\beta} u_{i \beta} l_{\beta \alpha}
@@ -452,8 +452,8 @@
 <section id="effective-lotka-volterra-model-elvm">
 <h2>Effective Lotka-Volterra Model (eLVM)<a class="headerlink" href="#effective-lotka-volterra-model-elvm" title="Link to this heading">#</a></h2>
 <p>To investigate the relationships between different species, we simplify the MiCRM to Effective Lotka-Volterra Model (eLVM)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50420412-9662-4e19-a22d-a40817ac6da8">
-<span class="eqno">(2)<a class="headerlink" href="#equation-50420412-9662-4e19-a22d-a40817ac6da8" title="Permalink to this equation">#</a></span>\[\begin{equation}\frac{dC_i}{dt} = C_i \left( r_i + \sum_j \alpha_{ij}C_j  \right) \end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b7d53869-5e71-486b-87d0-67fd5ef4ea40">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b7d53869-5e71-486b-87d0-67fd5ef4ea40" title="Permalink to this equation">#</a></span>\[\begin{equation}\frac{dC_i}{dt} = C_i \left( r_i + \sum_j \alpha_{ij}C_j  \right) \end{equation}\]</div>
 </section>
 </section>
 
@@ -538,7 +538,7 @@
   <div class="footer-item">
     
 <p class="component-author">
-By Yan Zhu
+By Yan Zhu, Samraat Pawar
 </p>
 
   </div>
@@ -548,7 +548,7 @@ By Yan Zhu
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024, EcoEngLab.
       <br/>
     
   </p>
