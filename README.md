@@ -1,2 +1,2 @@
 This is for DigiMic Python version.
-The webpage is https://digimicorg.github.io/DigiMicP
+The webpage is https://digimicorg.github.io/DigiMicPy
