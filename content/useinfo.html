@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Basic Usage &#8212; DigiMic</title>
+    <title>Basic usage &#8212; DigiMic</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -171,7 +171,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">The basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic Usage</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic usage</a></li>
+
+
 
 
 
@@ -358,7 +360,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic Usage</h1>
+    <h1>Basic usage</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -368,10 +370,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Usage</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-community-parameters">Generating Community Parameters</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-system-dynamics">Defining System Dynamics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic usage</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-community-parameters">1. Generate community parameters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-system-dynamics">2. Define system dynamics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-simulation">3. Run the simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-trajectories">4. Plot trajectories</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summarise-final-state">5. Summarise final state</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-tips">Practical tips</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -384,49 +391,58 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="basic-usage">
-<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-usage">
+<h1>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h1>
+<p>This page gives a compact end-to-end example: generate a synthetic modular community, define MiCRM dynamics, integrate the ODE system, and inspect the resulting trajectories.</p>
+<p>The examples below assume the documentation notebook is run from <code class="docutils literal notranslate"><span class="pre">docs/content</span></code>, where a copy of <code class="docutils literal notranslate"><span class="pre">param.py</span></code> is available. In a package workflow, import the parameter utilities from the installed package or from <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="generating-community-parameters">
-<h1>Generating Community Parameters<a class="headerlink" href="#generating-community-parameters" title="Link to this heading">#</a></h1>
-<p>The first step of any simulation is to generate a set of parameters for a given microbial community. In <code class="docutils literal notranslate"><span class="pre">micrm.py</span></code>, we can define some parameters, and generate uptake rate and leakage rate by calling functions in <code class="docutils literal notranslate"><span class="pre">param.py</span></code>. <code class="docutils literal notranslate"><span class="pre">np.random.seed</span></code> makes results repeatable. In this example we will consider a simple unstructured community where uptake and leakage values are randomly drawn from a dirchlet distribution and all other parameters are shown as in code:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="generate-community-parameters">
+<h1>1. Generate community parameters<a class="headerlink" href="#generate-community-parameters" title="Link to this heading">#</a></h1>
+<p>The first step is to choose the community size and generate uptake and leakage parameters. <code class="docutils literal notranslate"><span class="pre">np.random.seed</span></code> makes the synthetic community reproducible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">param</span>
 
-<span class="c1"># This is a basic code for simulating MiCRM</span>
-
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># parameters</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># consumer number</span>
-<span class="n">M</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># resource number</span>
-<span class="n">λ</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># total leakage rate</span>
+<span class="c1"># Community size</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># number of consumers</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># number of resources</span>
 
-<span class="n">N_modules</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># module number of consumer to resource</span>
-<span class="n">s_ratio</span> <span class="o">=</span> <span class="mf">10.0</span> 
+<span class="c1"># Modularity controls</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">N_modules</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">s_ratio</span> <span class="o">=</span> <span class="mf">10.0</span>
 
-<span class="n">u</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">modular_uptake</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">N_modules</span><span class="p">,</span> <span class="n">s_ratio</span><span class="p">)</span>  <span class="c1"># uptake matrix</span>
+<span class="c1"># Consumer-resource uptake matrix</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">modular_uptake</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">N_modules</span><span class="p">,</span> <span class="n">s_ratio</span><span class="p">)</span>
 
-<span class="n">lambda_alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>  <span class="c1"># total leakage rate for each resource</span>
+<span class="c1"># Total leakage fraction for each resource</span>
+<span class="n">lambda_alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
 
-<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>  <span class="c1"># mortality rate of N consumers</span>
+<span class="c1"># Consumer and resource turnover parameters</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># input of M resources</span>
+<span class="c1"># Consumer-specific leakage tensor</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">generate_l_tensor</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">N_modules</span><span class="p">,</span> <span class="n">s_ratio</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span>
 
-<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># decay rate of M resources</span>
-
-<span class="n">l</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">generate_l_tensor</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">N_modules</span><span class="p">,</span> <span class="n">s_ratio</span><span class="p">,</span> <span class="n">λ</span><span class="p">)</span> <span class="c1"># a tensor for all consumers&#39; leakage matrics</span>
+<span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">l</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((10, 5), (10, 5, 5))
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="defining-system-dynamics">
-<h1>Defining System Dynamics<a class="headerlink" href="#defining-system-dynamics" title="Link to this heading">#</a></h1>
-<p>Once we have a set of parameters the next step is to define the dynamics of the community we want to simulate. <code class="docutils literal notranslate"><span class="pre">micrm.py</span></code> allows the user to specify the dynamics of the system they wish to simulate by passing custom functions to the … function.</p>
-<p>This process is explained in more detail XXX but briefly the user can specify dynamics depending on the parameters created in the previous step as well as additional state variables to represent external drivers such as temperature. In this example we will use the default dynamics as described above and so we can just use the … out of the box.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="define-system-dynamics">
+<h1>2. Define system dynamics<a class="headerlink" href="#define-system-dynamics" title="Link to this heading">#</a></h1>
+<p>The derivative function receives time <code class="docutils literal notranslate"><span class="pre">t</span></code> and state vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. The first <code class="docutils literal notranslate"><span class="pre">N</span></code> entries of <code class="docutils literal notranslate"><span class="pre">y</span></code> are consumer biomasses and the final <code class="docutils literal notranslate"><span class="pre">M</span></code> entries are resources.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dCdt_Rdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -434,43 +450,124 @@
     <span class="n">R</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span>
     <span class="n">dCdt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="n">dRdt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-        <span class="n">dCdt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lambda_alpha</span><span class="p">[</span><span class="n">alpha</span><span class="p">])</span> <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    
+        <span class="n">dCdt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lambda_alpha</span><span class="p">[</span><span class="n">alpha</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+        <span class="p">)</span> <span class="o">-</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
     <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
         <span class="n">dRdt</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">-</span> <span class="n">R</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="n">omega</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span>
-        <span class="n">dRdt</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">-=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
-        <span class="n">dRdt</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">beta</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span> <span class="o">*</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
-    
+        <span class="n">dRdt</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">-=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">dRdt</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">beta</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span> <span class="o">*</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="p">)</span>
+
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dCdt</span><span class="p">,</span> <span class="n">dRdt</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="simulation">
-<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h1>
-<p>Once we have the parameters and the derivative equation we are ready to simulate the system and integrate through time. <code class="docutils literal notranslate"><span class="pre">micrm.py</span></code> relies heavily on the brilliant <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> to do the numerical integration and it is worth having a look at the docs to get an idea of what is going on under the hood in your simulations. The simulation procedure is fairly straightforward and just requires that we first create an ODEProblem object which defines the problem for the ODE solver and then solve it with the aptly named solve function. To define the ODEProblem we need to specify the initial state of the system as well as the timespan we want to simulate over:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="run-the-simulation">
+<h1>3. Run the simulation<a class="headerlink" href="#run-the-simulation" title="Link to this heading">#</a></h1>
+<p>Initial conditions should contain both consumers and resources. Here all consumers start at low biomass and all resources start at abundance one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 
-<span class="c1"># intial value</span>
-<span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># consumer</span>
-<span class="n">R0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># resource</span>
+<span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">R0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="n">Y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">C0</span><span class="p">,</span> <span class="n">R0</span><span class="p">])</span>
 
-<span class="c1"># time sacle</span>
 <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">t_span</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
 
-<span class="c1"># solve ode</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dCdt_Rdt</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
+<span class="n">sol</span><span class="o">.</span><span class="n">success</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">message</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True, &#39;The solver successfully reached the end of the integration interval.&#39;)
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="plot-trajectories">
+<h1>4. Plot trajectories<a class="headerlink" href="#plot-trajectories" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Consumer </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span>
+        <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">],</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Resource </span><span class="si">{</span><span class="n">alpha</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Abundance&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Dynamics of consumers and resources&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5434ccda37ce334fbc798b20db9449284522637cd4af40813c26812838b39870.png" src="../_images/5434ccda37ce334fbc798b20db9449284522637cd4af40813c26812838b39870.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summarise-final-state">
+<h1>5. Summarise final state<a class="headerlink" href="#summarise-final-state" title="Link to this heading">#</a></h1>
+<p>The final state can be used to compare parameter scenarios or to initialise downstream stability analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_C</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[:</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">final_R</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">N</span><span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final consumer biomasses:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">final_C</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final resource abundances:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">final_R</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Persisting consumers:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">final_C</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">),</span> <span class="s2">&quot;of&quot;</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final consumer biomasses: [1.0536 0.3904 1.028  0.717  0.8099 0.5625 1.9956 1.3624 0.7861 0.9406]
+Final resource abundances: [0.2432 0.2048 0.1846 0.276  0.2305]
+Persisting consumers: 10 of 10
+</pre></div>
+</div>
+</div>
+</div>
+<section id="practical-tips">
+<h2>Practical tips<a class="headerlink" href="#practical-tips" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">N</span></code> and <code class="docutils literal notranslate"><span class="pre">M</span></code> gradually; large systems are easier to debug after the small case works.</p></li>
+<li><p>Keep a fixed random seed while developing an experiment, then repeat across many seeds for inference.</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">sol.success</span></code> before interpreting trajectories.</p></li>
+<li><p>Compare scenarios by changing one parameter family at a time, such as <code class="docutils literal notranslate"><span class="pre">λ</span></code>, <code class="docutils literal notranslate"><span class="pre">s_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">rho</span></code>, or <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p></li>
+<li><p>If trajectories become negative or the solver struggles, try smaller tolerances, different solvers, or parameter ranges with slower turnover.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -538,10 +635,15 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Usage</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-community-parameters">Generating Community Parameters</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-system-dynamics">Defining System Dynamics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic usage</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-community-parameters">1. Generate community parameters</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-system-dynamics">2. Define system dynamics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-simulation">3. Run the simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-trajectories">4. Plot trajectories</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summarise-final-state">5. Summarise final state</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-tips">Practical tips</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

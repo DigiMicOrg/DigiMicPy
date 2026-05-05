@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -173,7 +173,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
+
+
 
 
 
@@ -370,8 +372,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microbiological-consumer-resource-model-micrm">Microbiological Consumer - Resource Model (MiCRM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-lotka-volterra-model-elvm">Effective Lotka-Volterra Model (eLVM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-consumer-resource-dynamics">Why consumer-resource dynamics?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microbial-consumer-resource-model-micrm">Microbial Consumer-Resource Model (MiCRM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-resource-structure">Modular resource structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-lotka-volterra-interpretation">Effective Lotka-Volterra interpretation</a></li>
 </ul>
             </nav>
         </div>
@@ -385,75 +389,97 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-basic-theory">
 <h1>The basic theory<a class="headerlink" href="#the-basic-theory" title="Link to this heading">#</a></h1>
-<p><img alt="theory framework" src="../_images/MiCRM.png" /></p>
-<section id="microbiological-consumer-resource-model-micrm">
-<h2>Microbiological Consumer - Resource Model (MiCRM)<a class="headerlink" href="#microbiological-consumer-resource-model-micrm" title="Link to this heading">#</a></h2>
-<p>The core framework of DigiMic is based on a general consumer-resource model (the ‘’Microbial Consumer-Resource Model’’, aka MiCRM), which tracks biomass fluxes and dynamics in the community by accounting for resource uptake, metabolic by-product secretion &amp; cross-feeding, and maintenance respiration. Species within the community compete through the exploitation of resources and cross-feed through the secretion of metabolic by-products, which replenish the resource pool. For a community of <span class="math notranslate nohighlight">\(N\)</span> species (or ‘’strains’’) and <span class="math notranslate nohighlight">\(M\)</span> resource types, the MiCRM is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9654617-b9cd-4ad9-a139-1f13f6ffd195">
-<span class="eqno">(1)<a class="headerlink" href="#equation-d9654617-b9cd-4ad9-a139-1f13f6ffd195" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\begin{aligned}
-    \frac{dC_i}{dt} &amp;= \sum_{\alpha = 0}^{M} C_i R_{\alpha} u_{i\alpha}  (1 - \lambda_{\alpha}) - C_i m_i \\
-    \frac{dR_\alpha}{dt} &amp;= \rho_{\alpha} - R_{\alpha} \omega_{\alpha} - \sum_{i = 0}^{N} C_i R_{\alpha} u_{i\alpha} + \sum_{i = 0}^{N} \sum_{\beta = 0}^{M} C_i R_{\beta} u_{i \beta} l_{\beta \alpha}
-\end{aligned}
-\end{equation}\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(C_i (i = 1,...,N)\)</span> is the biomass abundance of the <span class="math notranslate nohighlight">\(i\)</span>-th consumer species and <span class="math notranslate nohighlight">\(R_\alpha (\alpha = 1,...,M)\)</span> is the resource abundance of the ath resource type. All resource types are generated externally and enter the system at a constant rate (<span class="math notranslate nohighlight">\(\rho_\alpha\)</span>). The <span class="math notranslate nohighlight">\(i\)</span>-th population’s growth is determined by its resource uptake (<span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>) and loss rate (to maintenance respiration, <span class="math notranslate nohighlight">\(m_i\)</span>). The total uptake rate of the <span class="math notranslate nohighlight">\(i\)</span>-th species, <span class="math notranslate nohighlight">\(u_i\)</span>, is determined by its vector of resource preferences (of <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>’s). The total resource consumed by each species is lost through inefficiency (<span class="math notranslate nohighlight">\(l^i_{aa}\)</span>) or transformation into metabolic by-products (<span class="math notranslate nohighlight">\(l^i_{ab}\)</span>) and returned to the resource pool. Assimilation efficiency is bounded at both resource (<span class="math notranslate nohighlight">\(1-\sum_{ib}l^i_{ab}&gt;0\)</span>) and species (<span class="math notranslate nohighlight">\(1-\sum_{ab}l^i_{ab}&gt;0\)</span>) levels. The following table lists and describes all parameters along with their variable names.</p>
+<p><img alt="MiCRM framework" src="../_images/MiCRM.png" /></p>
+<section id="why-consumer-resource-dynamics">
+<h2>Why consumer-resource dynamics?<a class="headerlink" href="#why-consumer-resource-dynamics" title="Link to this heading">#</a></h2>
+<p>Many microbiome models describe interactions directly at the species level: species <span class="math notranslate nohighlight">\(i\)</span> helps or inhibits species <span class="math notranslate nohighlight">\(j\)</span>. DigiMic instead starts one mechanistic layer earlier. Species interact because they consume, transform, and release resources. This makes the model useful when community behaviour depends on metabolic overlap, by-product production, environmental supply, or cross-feeding.</p>
+</section>
+<section id="microbial-consumer-resource-model-micrm">
+<h2>Microbial Consumer-Resource Model (MiCRM)<a class="headerlink" href="#microbial-consumer-resource-model-micrm" title="Link to this heading">#</a></h2>
+<p>The core framework of DigiMic is the Microbial Consumer-Resource Model (MiCRM). It tracks biomass and resource fluxes in a community by accounting for resource uptake, metabolic by-product secretion, cross-feeding, environmental supply, resource loss, and maintenance respiration. For a community of <span class="math notranslate nohighlight">\(N\)</span> consumers and <span class="math notranslate nohighlight">\(M\)</span> resources, the model used here is:</p>
+<p>The consumer equation says that consumer biomass increases through resource uptake after leakage losses and decreases through maintenance or mortality. The resource equation combines four fluxes: external supply, abiotic loss, direct consumption, and replenishment from leaked metabolic by-products.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Key</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Code name</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_i\)</span></p></td>
-<td><p>Biomass of the <span class="math notranslate nohighlight">\(i\)</span>-th consumer</p></td>
-<td><p>-</p></td>
+<td><p>Biomass abundance of consumer <span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td><p>first <code class="docutils literal notranslate"><span class="pre">N</span></code> entries of state vector</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_{\alpha}\)</span></p></td>
-<td><p>Mass of the <span class="math notranslate nohighlight">\(\alpha\)</span>-th resource</p></td>
-<td><p>-</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_\alpha\)</span></p></td>
+<td><p>Abundance of resource <span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p>final <code class="docutils literal notranslate"><span class="pre">M</span></code> entries of state vector</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
-<td><p>Number of consumer populations</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+<td><p>Number of consumers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">N</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
 <td><p>Number of resources</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">M</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(u_{i \alpha}\)</span></p></td>
-<td><p>Uptake rate of the <span class="math notranslate nohighlight">\(\alpha\)</span>-th resource  by the <span class="math notranslate nohighlight">\(i\)</span>-th consumer</p></td>
-<td><p><span class="math notranslate nohighlight">\(u\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(u_{i\alpha}\)</span></p></td>
+<td><p>Uptake rate or preference of consumer <span class="math notranslate nohighlight">\(i\)</span> for resource <span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(m_i\)</span></p></td>
-<td><p>Loss term for the <span class="math notranslate nohighlight">\(i\)</span>-th consumer</p></td>
-<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p>Consumer maintenance or mortality term</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho_{\alpha}\)</span></p></td>
-<td><p>Inflow rate for the <span class="math notranslate nohighlight">\(\alpha\)</span>-th resource</p></td>
-<td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho_\alpha\)</span></p></td>
+<td><p>External resource input rate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rho</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\omega_{\alpha}\)</span></p></td>
-<td><p>Outflow term for the <span class="math notranslate nohighlight">\(j\)</span> resource</p></td>
-<td><p><span class="math notranslate nohighlight">\(\omega\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
+<td><p>Resource decay or washout rate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">omega</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_{\alpha \beta}\)</span></p></td>
-<td><p>Proportion of uptake of the <span class="math notranslate nohighlight">\(\alpha\)</span>-th resource leaked to the <span class="math notranslate nohighlight">\(\beta\)</span>-th resource</p></td>
-<td><p><span class="math notranslate nohighlight">\(l\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_{i\beta\alpha}\)</span></p></td>
+<td><p>Fraction of resource <span class="math notranslate nohighlight">\(\beta\)</span> uptake leaked by consumer <span class="math notranslate nohighlight">\(i\)</span> into resource <span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\lambda_{\alpha}\)</span></p></td>
-<td><p>Total proportion of the <span class="math notranslate nohighlight">\(\alpha\)</span>-th resource leaked, same as <span class="math notranslate nohighlight">\(\sum_{\beta} l_{\alpha,\beta}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\lambda\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\lambda_\alpha\)</span></p></td>
+<td><p>Total leaked fraction of uptake from resource <span class="math notranslate nohighlight">\(\alpha\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lambda_alpha</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>The current implementation treats leakage as consumer-specific through a tensor with shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">M,</span> <span class="pre">M)</span></code>. This allows two consumers to consume the same resource but release different by-product profiles if needed.</p>
 </section>
-<section id="effective-lotka-volterra-model-elvm">
-<h2>Effective Lotka-Volterra Model (eLVM)<a class="headerlink" href="#effective-lotka-volterra-model-elvm" title="Link to this heading">#</a></h2>
-<p>To investigate the relationships between different species, we simplify the MiCRM to Effective Lotka-Volterra Model (eLVM)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7d53869-5e71-486b-87d0-67fd5ef4ea40">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b7d53869-5e71-486b-87d0-67fd5ef4ea40" title="Permalink to this equation">#</a></span>\[\begin{equation}\frac{dC_i}{dt} = C_i \left( r_i + \sum_j \alpha_{ij}C_j  \right) \end{equation}\]</div>
+<section id="modular-resource-structure">
+<h2>Modular resource structure<a class="headerlink" href="#modular-resource-structure" title="Link to this heading">#</a></h2>
+<p>DigiMic includes simple generators for modular communities. In a modular community, subsets of consumers preferentially consume subsets of resources, and leakage can be biased within or between resource modules. This is useful for synthetic experiments because it lets you tune ecological structure without manually filling every matrix entry.</p>
+<p>The main control parameters are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Control</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">N_modules</span></code></p></td>
+<td><p>Number of consumer-resource modules</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s_ratio</span></code></p></td>
+<td><p>Strength of within-module preference relative to background random uptake or leakage</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code> / <code class="docutils literal notranslate"><span class="pre">λ</span></code></p></td>
+<td><p>Total leakage fraction allocated across leaked by-products</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Larger <code class="docutils literal notranslate"><span class="pre">s_ratio</span></code> values create clearer module structure. Larger leakage values tend to strengthen cross-feeding because more consumed material returns to the resource pool rather than being assimilated into biomass.</p>
+</section>
+<section id="effective-lotka-volterra-interpretation">
+<h2>Effective Lotka-Volterra interpretation<a class="headerlink" href="#effective-lotka-volterra-interpretation" title="Link to this heading">#</a></h2>
+<p>For some questions, it is helpful to summarise the net effect of resource-mediated processes as apparent species interactions. Around a fixed environmental context or equilibrium, MiCRM dynamics can be related to an effective Lotka-Volterra model:</p>
+<p>Here, <span class="math notranslate nohighlight">\(r_i\)</span> represents an effective intrinsic growth term and <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> summarises the net effect of species <span class="math notranslate nohighlight">\(j\)</span> on species <span class="math notranslate nohighlight">\(i\)</span>. Importantly, these effective interactions are not assumed directly in DigiMic: they emerge from resource competition, leakage, and cross-feeding. This distinction is useful when interpreting why two species appear competitive, facilitative, or weakly coupled.</p>
 </section>
 </section>
 
@@ -522,8 +548,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microbiological-consumer-resource-model-micrm">Microbiological Consumer - Resource Model (MiCRM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-lotka-volterra-model-elvm">Effective Lotka-Volterra Model (eLVM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-consumer-resource-dynamics">Why consumer-resource dynamics?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microbial-consumer-resource-model-micrm">Microbial Consumer-Resource Model (MiCRM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-resource-structure">Modular resource structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-lotka-volterra-interpretation">Effective Lotka-Volterra interpretation</a></li>
 </ul>
   </nav></div>
 

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/details';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic Usage" href="useinfo.html" />
+    <link rel="next" title="Basic usage" href="useinfo.html" />
     <link rel="prev" title="The basic theory" href="theo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,7 +171,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">The basic theory</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Technical details</a></li>
-<li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
+
+
 
 
 
@@ -345,7 +347,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -361,6 +365,20 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-workflow">Simulation workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-vector-layout">State vector layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-objects">Parameter objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uptake-matrix-generation">Uptake matrix generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakage-tensor-generation">Leakage tensor generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-the-model">Extending the model</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -372,7 +390,109 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="technical-details">
 <h1>Technical details<a class="headerlink" href="#technical-details" title="Link to this heading">#</a></h1>
-<p><img alt="theory framework" src="../_images/workflow.png" /></p>
+<p><img alt="DigiMic workflow" src="../_images/workflow.png" /></p>
+<section id="simulation-workflow">
+<h2>Simulation workflow<a class="headerlink" href="#simulation-workflow" title="Link to this heading">#</a></h2>
+<p>A DigiMic simulation has four main steps:</p>
+<ol class="arabic simple">
+<li><p>Choose the number of consumers and resources.</p></li>
+<li><p>Generate ecological parameters such as uptake preferences and leakage structure.</p></li>
+<li><p>Define the coupled ODE system for consumer and resource dynamics.</p></li>
+<li><p>Integrate the system through time and analyse the output.</p></li>
+</ol>
+<p>The package currently keeps these steps explicit rather than hiding them behind a large framework. This makes it easier to modify equations, add drivers, or replace the parameter generator for a particular experiment.</p>
+</section>
+<section id="state-vector-layout">
+<h2>State vector layout<a class="headerlink" href="#state-vector-layout" title="Link to this heading">#</a></h2>
+<p>The ODE solver receives a single state vector <code class="docutils literal notranslate"><span class="pre">y</span></code>. DigiMic stores the first <code class="docutils literal notranslate"><span class="pre">N</span></code> entries as consumers and the next <code class="docutils literal notranslate"><span class="pre">M</span></code> entries as resources:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span>
+</pre></div>
+</div>
+<p>This layout is simple but important. Any custom derivative function should return derivatives in the same order:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dCdt</span><span class="p">,</span> <span class="n">dRdt</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-objects">
+<h2>Parameter objects<a class="headerlink" href="#parameter-objects" title="Link to this heading">#</a></h2>
+<p>The core parameter arrays are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Object</p></th>
+<th class="head text-right"><p>Shape</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">M)</span></code></p></td>
+<td><p>consumer-resource uptake matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lambda_alpha</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(M,)</span></code></p></td>
+<td><p>total leakage fraction per consumed resource</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(N,)</span></code></p></td>
+<td><p>maintenance or mortality rates</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rho</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(M,)</span></code></p></td>
+<td><p>resource input rates</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">omega</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(M,)</span></code></p></td>
+<td><p>resource decay or washout rates</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">M,</span> <span class="pre">M)</span></code></p></td>
+<td><p>consumer-specific leakage tensor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The current parameter helpers in <code class="docutils literal notranslate"><span class="pre">param.py</span></code> generate random modular matrices. Since these are stochastic, set <code class="docutils literal notranslate"><span class="pre">np.random.seed(...)</span></code> when you need exact reproducibility.</p>
+</section>
+<section id="uptake-matrix-generation">
+<h2>Uptake matrix generation<a class="headerlink" href="#uptake-matrix-generation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">modular_uptake(N,</span> <span class="pre">M,</span> <span class="pre">N_modules,</span> <span class="pre">s_ratio)</span></code> starts with a random uptake matrix, boosts entries that fall within matched consumer-resource modules, and then normalises each consumer row. The result is that each consumer’s uptake preferences sum to one, while module membership changes how that uptake is distributed across resources.</p>
+<p>This is useful for testing questions such as:</p>
+<ul class="simple">
+<li><p>How does niche overlap affect coexistence?</p></li>
+<li><p>Do strongly modular communities respond differently to perturbation?</p></li>
+<li><p>Does resource specialisation amplify or dampen cross-feeding effects?</p></li>
+</ul>
+</section>
+<section id="leakage-tensor-generation">
+<h2>Leakage tensor generation<a class="headerlink" href="#leakage-tensor-generation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">generate_l_tensor(N,</span> <span class="pre">M,</span> <span class="pre">N_modules,</span> <span class="pre">s_ratio,</span> <span class="pre">λ)</span></code> creates one leakage matrix per consumer. Each matrix maps consumed resources to leaked resources and each consumed-resource row is normalised to the total leakage fraction <code class="docutils literal notranslate"><span class="pre">λ</span></code>.</p>
+<p>Conceptually, <code class="docutils literal notranslate"><span class="pre">l[i,</span> <span class="pre">beta,</span> <span class="pre">alpha]</span></code> is the fraction of resource <code class="docutils literal notranslate"><span class="pre">beta</span></code> consumed by consumer <code class="docutils literal notranslate"><span class="pre">i</span></code> that returns to the environment as resource <code class="docutils literal notranslate"><span class="pre">alpha</span></code>. This is the key object for modelling metabolic by-products and cross-feeding.</p>
+</section>
+<section id="numerical-integration">
+<h2>Numerical integration<a class="headerlink" href="#numerical-integration" title="Link to this heading">#</a></h2>
+<p>DigiMic uses <code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp</span></code> in the example workflow. This gives access to the standard SciPy ODE solvers while keeping the model equation readable. For larger systems or stiff parameter regimes, users can pass additional <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> options such as method choice, tolerances, or event functions.</p>
+<p>Useful checks after integration include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sol.success</span></code> and <code class="docutils literal notranslate"><span class="pre">sol.message</span></code> for solver status;</p></li>
+<li><p>minimum values of consumers and resources to detect invalid negative states;</p></li>
+<li><p>final abundances to identify extinctions or persistent consumers;</p></li>
+<li><p>trajectory plots to check transient dynamics.</p></li>
+</ul>
+</section>
+<section id="extending-the-model">
+<h2>Extending the model<a class="headerlink" href="#extending-the-model" title="Link to this heading">#</a></h2>
+<p>Because the derivative function is plain Python, the model can be extended without changing the package structure. Common extensions include:</p>
+<ul class="simple">
+<li><p>time-varying resource supply <code class="docutils literal notranslate"><span class="pre">rho(t)</span></code>;</p></li>
+<li><p>temperature- or pH-dependent uptake rates;</p></li>
+<li><p>species-specific leakage tensors;</p></li>
+<li><p>immigration or dilution terms;</p></li>
+<li><p>pulsed perturbations to consumers or resources;</p></li>
+<li><p>alternative parameter generators fitted to empirical measurements.</p></li>
+</ul>
+<p>When adding extensions, keep the state-vector order and parameter dimensions explicit. Most modelling errors in this type of system come from shape mismatches or inconsistent indexing.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -419,7 +539,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic Usage</p>
+        <p class="prev-next-title">Basic usage</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -429,6 +549,28 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-workflow">Simulation workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-vector-layout">State vector layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-objects">Parameter objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uptake-matrix-generation">Uptake matrix generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakage-tensor-generation">Leakage tensor generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-the-model">Extending the model</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
