@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>Carbon use efficiency &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/cue';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="Temperature control" href="temperature.html" />
+    <link rel="prev" title="Coalescence" href="coalescence.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -180,9 +179,9 @@
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="coalescence.html">Coalescence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cue.html">Carbon use efficiency</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Carbon use efficiency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="temperature.html">Temperature control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
 </ul>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/cue.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/cue.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>Carbon use efficiency</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +390,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#species-level-cue">Species-level CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biomass-weighted-community-cue">Biomass-weighted community CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-weighted-community-cue">Flux-weighted community CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-a-standardized-resource-environment">Why use a standardized resource environment?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cue-and-coalescence">CUE and coalescence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-workflow">Calculation workflow</a></li>
 </ul>
             </nav>
         </div>
@@ -406,97 +407,122 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="carbon-use-efficiency">
+<h1>Carbon use efficiency<a class="headerlink" href="#carbon-use-efficiency" title="Link to this heading">#</a></h1>
+<p>Carbon use efficiency (CUE) measures how much consumed carbon is retained in biomass rather than leaked, respired, or otherwise lost from growth. In DigiMic, CUE can be calculated at the species level and then summarised at the community level.</p>
+<p>This page distinguishes biomass-weighted and flux-weighted community CUE. The distinction matters because a species can be abundant but process little resource, or rare but account for a large share of carbon flux.</p>
+<section id="species-level-cue">
+<h2>Species-level CUE<a class="headerlink" href="#species-level-cue" title="Link to this heading">#</a></h2>
+<p>For species <span class="math notranslate nohighlight">\(i\)</span> consuming resource <span class="math notranslate nohighlight">\(\alpha\)</span>, define the retained fraction:</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_{i\alpha}
+= 1 - \sum_\beta l_{i\alpha\beta}.
+\]</div>
+<p>Under a standardized reference resource environment <span class="math notranslate nohighlight">\(R^0\)</span>, the potential uptake flux of species <span class="math notranslate nohighlight">\(i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+U_i^0 = \sum_\alpha u_{i\alpha}R_\alpha^0.
+\]</div>
+<p>The potential retained carbon flux is:</p>
+<div class="math notranslate nohighlight">
+\[
+G_i^0 = \sum_\alpha u_{i\alpha}\eta_{i\alpha}R_\alpha^0.
+\]</div>
+<p>A gross species CUE is:</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon_i^{\mathrm{gross}}
+= \frac{G_i^0}{U_i^0}.
+\]</div>
+<p>If maintenance cost is treated as a carbon loss, use a net CUE:</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon_i^{\mathrm{net}}
+= \frac{G_i^0 - m_i}{U_i^0}.
+\]</div>
+<p>The CUE coalescence reference code uses this net form because maintenance reduces the carbon available for population growth.</p>
+</section>
+<section id="biomass-weighted-community-cue">
+<h2>Biomass-weighted community CUE<a class="headerlink" href="#biomass-weighted-community-cue" title="Link to this heading">#</a></h2>
+<p>The simplest community summary is the biomass-weighted mean CUE of the surviving assemblage:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{biomass}}
+= \frac{\sum_i C_i^*\epsilon_i}{\sum_i C_i^*}.
+\]</div>
+<p>This is easy to interpret: it describes the CUE of the taxa that are abundant after assembly. It is a useful community trait summary, but it is not always the best measure of carbon-processing efficiency.</p>
+</section>
+<section id="flux-weighted-community-cue">
+<h2>Flux-weighted community CUE<a class="headerlink" href="#flux-weighted-community-cue" title="Link to this heading">#</a></h2>
+<p>A more mechanistic community-level CUE weights each species by its biomass and potential uptake flux:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{flux}}
+= \frac{\sum_i C_i^*U_i^0\epsilon_i}{\sum_i C_i^*U_i^0}.
+\]</div>
+<p>Equivalently, using resource-specific retained fractions:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{flux}}
+=
+\frac{
+\sum_i C_i^*\sum_\alpha u_{i\alpha}R_\alpha^0\eta_{i\alpha}
+}{
+\sum_i C_i^*\sum_\alpha u_{i\alpha}R_\alpha^0
+}.
+\]</div>
+<p>This quantity is closer to “retained carbon per unit consumed carbon” for the assembled community under a standardized resource environment.</p>
+</section>
+<section id="why-use-a-standardized-resource-environment">
+<h2>Why use a standardized resource environment?<a class="headerlink" href="#why-use-a-standardized-resource-environment" title="Link to this heading">#</a></h2>
+<p>Using <span class="math notranslate nohighlight">\(R^0\)</span> avoids circularity. If CUE were calculated using the post-assembly resource state <span class="math notranslate nohighlight">\(R^*\)</span>, then the metric would partly depend on the outcome it is trying to explain. A standard reference environment makes species CUE an intrinsic trait-like quantity, while biomass and flux weights capture how that trait is expressed in the assembled community.</p>
+<p>Common choices for <span class="math notranslate nohighlight">\(R^0\)</span> include:</p>
+<ul class="simple">
+<li><p>the initial resource vector used for assembly;</p></li>
+<li><p>the chemostat carrying-capacity vector;</p></li>
+<li><p>the mean resource environment across scenarios;</p></li>
+<li><p>a user-defined experimental medium.</p></li>
+</ul>
+<p>The same <span class="math notranslate nohighlight">\(R^0\)</span> should be used when comparing communities.</p>
+</section>
+<section id="cue-and-coalescence">
+<h2>CUE and coalescence<a class="headerlink" href="#cue-and-coalescence" title="Link to this heading">#</a></h2>
+<p>CUE is useful in coalescence analysis because it links community composition to resource depletion and invasion thresholds:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{flux}}
+\rightarrow R^*
+\rightarrow \mathrm{invasion\ growth}
+\rightarrow \mathrm{coalescence\ outcome}.
+\]</div>
+<p>Higher CUE communities can retain more consumed carbon in biomass and may draw down limiting resources more deeply. This can make invasion harder for low-efficiency competitors, but the outcome also depends on leakage structure, facilitation, and resource overlap.</p>
+</section>
+<section id="calculation-workflow">
+<h2>Calculation workflow<a class="headerlink" href="#calculation-workflow" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
+<li><p>Choose a reference resource vector <span class="math notranslate nohighlight">\(R^0\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\eta_{i\alpha}\)</span> from the leakage tensor.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(U_i^0\)</span>, <span class="math notranslate nohighlight">\(G_i^0\)</span>, and species CUE <span class="math notranslate nohighlight">\(\epsilon_i\)</span>.</p></li>
+<li><p>Simulate MiCRM to get equilibrium biomasses <span class="math notranslate nohighlight">\(C_i^*\)</span>.</p></li>
+<li><p>Filter extinct species with a threshold such as <code class="docutils literal notranslate"><span class="pre">1e-5</span></code>.</p></li>
+<li><p>Compute both <span class="math notranslate nohighlight">\(E_{\mathrm{biomass}}\)</span> and <span class="math notranslate nohighlight">\(E_{\mathrm{flux}}\)</span>.</p></li>
+<li><p>Compare CUE with dominance, resource depletion, facilitation, and post-coalescence stability.</p></li>
 </ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
-<ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
-</ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
-</tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
-</tr>
-</tbody>
-</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">eta</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">l</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Ui0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">R0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Gi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">R0</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">species_cue</span> <span class="o">=</span> <span class="p">(</span><span class="n">Gi0</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Ui0</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="n">community_cue_biomass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">species_cue</span><span class="p">[</span><span class="n">survivors</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">C_eq</span><span class="p">[</span><span class="n">survivors</span><span class="p">])</span>
+<span class="n">community_cue_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span>
+    <span class="n">species_cue</span><span class="p">[</span><span class="n">survivors</span><span class="p">],</span>
+    <span class="n">weights</span><span class="o">=</span><span class="n">C_eq</span><span class="p">[</span><span class="n">survivors</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ui0</span><span class="p">[</span><span class="n">survivors</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
 </div>
+<p>The species and community CUE definitions here are based on <a class="reference external" href="https://github.com/EcoEngLab/CUE_predict_coalescence">EcoEngLab/CUE_predict_coalescence</a> and the attached notes on flux-weighted community CUE.</p>
 </section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,12 +555,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="coalescence.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Coalescence</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="temperature.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">Temperature control</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -555,10 +590,12 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#species-level-cue">Species-level CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biomass-weighted-community-cue">Biomass-weighted community CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-weighted-community-cue">Flux-weighted community CUE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-a-standardized-resource-environment">Why use a standardized resource environment?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cue-and-coalescence">CUE and coalescence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-workflow">Calculation workflow</a></li>
 </ul>
   </nav></div>
 

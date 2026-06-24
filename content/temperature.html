@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>Temperature control &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/temperature';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="Resource processing flux" href="resource_flux.html" />
+    <link rel="prev" title="Carbon use efficiency" href="cue.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -180,10 +179,10 @@
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="coalescence.html">Coalescence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cue.html">Carbon use efficiency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="temperature.html">Temperature control</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Temperature control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
 </ul>
 </details></li>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/temperature.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/temperature.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>Temperature control</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +390,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-dependent-traits">Temperature-dependent traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-temperature-enters-micrm">Where temperature enters MiCRM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-regimes">Temperature regimes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-workflow">Simulation workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-checks">Practical checks</a></li>
 </ul>
             </nav>
         </div>
@@ -406,97 +406,158 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
-<ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
-</ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
-<ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
-</ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="temperature-control">
+<h1>Temperature control<a class="headerlink" href="#temperature-control" title="Link to this heading">#</a></h1>
+<p>Temperature can be introduced into DigiMic by making physiological traits functions of temperature. The core idea is to replace fixed parameters such as uptake, maintenance, leakage, resource supply, or resource renewal with temperature-dependent functions evaluated during simulation.</p>
+<p>This matters because temperature changes both single-strain metabolic traits and the effective interactions that emerge through resources.</p>
+<section id="temperature-dependent-traits">
+<h2>Temperature-dependent traits<a class="headerlink" href="#temperature-dependent-traits" title="Link to this heading">#</a></h2>
+<p>A common trait response combines a Boltzmann-Arrhenius increase at low to moderate temperature with high-temperature deactivation:</p>
+<div class="math notranslate nohighlight">
+\[
+B(T)
+=
+B_0
+\frac{
+\exp\left[-\frac{E}{k_B}\left(\frac{1}{T}-\frac{1}{T_{\mathrm{ref}}}\right)\right]
+}{
+1 + \frac{E}{E_D-E}
+\exp\left[\frac{E_D}{k_B}\left(\frac{1}{T_p}-\frac{1}{T}\right)\right]
+}.
+\]</div>
+<p>where:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T\)</span></p></td>
+<td><p>Temperature in Kelvin</p></td>
 </tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(T_{\mathrm{ref}}\)</span></p></td>
+<td><p>Reference temperature</p></td>
 </tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k_B\)</span></p></td>
+<td><p>Boltzmann constant</p></td>
 </tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(B_0\)</span></p></td>
+<td><p>Trait value at the reference scale</p></td>
 </tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(E\)</span></p></td>
+<td><p>Activation energy</p></td>
 </tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(E_D\)</span></p></td>
+<td><p>High-temperature deactivation energy</p></td>
 </tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_p\)</span></p></td>
+<td><p>Peak temperature</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Different traits can have different <span class="math notranslate nohighlight">\((B_0, E, T_p)\)</span> values. For example, uptake and maintenance can be assigned correlated thermal parameters so that species differ in both growth potential and thermal sensitivity.</p>
 </section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
-</section>
-<div class="toctree-wrapper compound">
+<section id="where-temperature-enters-micrm">
+<h2>Where temperature enters MiCRM<a class="headerlink" href="#where-temperature-enters-micrm" title="Link to this heading">#</a></h2>
+<p>Temperature can control:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Possible temperature-dependent form</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Uptake</p></td>
+<td><p><span class="math notranslate nohighlight">\(u_{i\alpha}(T)\)</span> or a scalar multiplier on each row of <span class="math notranslate nohighlight">\(u\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Maintenance</p></td>
+<td><p><span class="math notranslate nohighlight">\(m_i(T)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Leakage or CUE</p></td>
+<td><p><span class="math notranslate nohighlight">\(l_{i\alpha\beta}(T)\)</span> or <span class="math notranslate nohighlight">\(\eta_{i\alpha}(T)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Resource supply</p></td>
+<td><p><span class="math notranslate nohighlight">\(\rho_\alpha(T)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Resource loss</p></td>
+<td><p><span class="math notranslate nohighlight">\(\omega_\alpha(T)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Self-renewing resources</p></td>
+<td><p><span class="math notranslate nohighlight">\(r_\alpha(T)\)</span> and <span class="math notranslate nohighlight">\(K_\alpha(T)\)</span></p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>The simplest implementation keeps the structure of <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(l\)</span> fixed but multiplies uptake and maintenance by thermal performance curves. More detailed implementations can allow leakage and resource supply to change with temperature too.</p>
+</section>
+<section id="temperature-regimes">
+<h2>Temperature regimes<a class="headerlink" href="#temperature-regimes" title="Link to this heading">#</a></h2>
+<p>The temperature input can be:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regime</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fixed</p></td>
+<td><p><span class="math notranslate nohighlight">\(T(t)=T_0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Step shift</p></td>
+<td><p><span class="math notranslate nohighlight">\(T(t)=T_1\)</span> before a pulse and <span class="math notranslate nohighlight">\(T_2\)</span> after</p></td>
+</tr>
+<tr class="row-even"><td><p>Sinusoidal</p></td>
+<td><p><span class="math notranslate nohighlight">\(T(t)=\bar T + A\sin(2\pi t/P)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Heatwave</p></td>
+<td><p>Short interval with elevated <span class="math notranslate nohighlight">\(T\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Empirical series</p></td>
+<td><p>Interpolated field or incubator measurements</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For time-varying temperature, the ODE becomes non-autonomous because parameters are recalculated at each time point.</p>
+</section>
+<section id="simulation-workflow">
+<h2>Simulation workflow<a class="headerlink" href="#simulation-workflow" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Define a temperature function <code class="docutils literal notranslate"><span class="pre">T_of_t(t)</span></code>.</p></li>
+<li><p>Define thermal trait functions for uptake, maintenance, and any resource parameters.</p></li>
+<li><p>Inside the ODE function, evaluate <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">T_of_t(t)</span></code>.</p></li>
+<li><p>Recalculate the temperature-dependent parameter values.</p></li>
+<li><p>Integrate with a solver suitable for potentially stiff dynamics, such as <code class="docutils literal notranslate"><span class="pre">BDF</span></code>.</p></li>
+<li><p>Record both the biological state and the temperature series.</p></li>
+<li><p>Compare community composition, CUE, stability, and effective GLV interactions across temperature regimes.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">thermal_trait</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">T_ref</span><span class="p">,</span> <span class="n">E_D</span><span class="p">,</span> <span class="n">T_peak</span><span class="p">,</span> <span class="n">kB</span><span class="o">=</span><span class="mf">8.62e-5</span><span class="p">):</span>
+    <span class="n">arrhenius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="n">kB</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">T_ref</span><span class="p">)))</span>
+    <span class="n">deactivation</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="p">(</span><span class="n">E_D</span> <span class="o">-</span> <span class="n">E</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">E_D</span> <span class="o">/</span> <span class="n">kB</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">T_peak</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">T</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">B0</span> <span class="o">*</span> <span class="n">arrhenius</span> <span class="o">/</span> <span class="n">deactivation</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dCdt_Rdt_temperature</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;T_of_t&quot;</span><span class="p">](</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">uptake_scale</span> <span class="o">=</span> <span class="n">thermal_trait</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;uptake_temp&quot;</span><span class="p">])</span>
+    <span class="n">maintenance</span> <span class="o">=</span> <span class="n">thermal_trait</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;maintenance_temp&quot;</span><span class="p">])</span>
+    <span class="c1"># Use uptake_scale and maintenance inside the MiCRM equations.</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-checks">
+<h2>Practical checks<a class="headerlink" href="#practical-checks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use Kelvin internally, even if inputs are displayed in Celsius.</p></li>
+<li><p>Check that trait curves remain biologically meaningful over the simulated temperature range.</p></li>
+<li><p>Avoid extrapolating far beyond the fitted thermal range.</p></li>
+<li><p>Compare fixed-temperature equilibria before running fluctuating regimes.</p></li>
+<li><p>Recompute effective GLV parameters separately at each equilibrium or time window.</p></li>
+<li><p>Report whether temperature changes only physiology or also resource supply and loss.</p></li>
+</ul>
+<p>The reference implementation for this page is <a class="reference external" href="https://github.com/DaniDuan/temp_interactions">DaniDuan/temp_interactions</a>, which uses temperature-dependent microbial traits, MiCRM dynamics, and effective interaction calculations to predict how microbial interactions vary with temperature.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,12 +590,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="cue.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Carbon use efficiency</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="resource_flux.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">Resource processing flux</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -555,10 +625,11 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-dependent-traits">Temperature-dependent traits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-temperature-enters-micrm">Where temperature enters MiCRM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-regimes">Temperature regimes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-workflow">Simulation workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-checks">Practical checks</a></li>
 </ul>
   </nav></div>
 

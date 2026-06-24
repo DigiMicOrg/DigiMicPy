@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>Resource processing flux &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/resource_flux';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="Analysis" href="analysis.html" />
+    <link rel="prev" title="Temperature control" href="temperature.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -180,11 +179,11 @@
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="coalescence.html">Coalescence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cue.html">Carbon use efficiency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="temperature.html">Temperature control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Resource processing flux</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="analysis.html">Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/resource_flux.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/resource_flux.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>Resource processing flux</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +390,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-definitions">Flux definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-balance">Resource balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#species-processing-rate">Species processing rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#community-processing-flux">Community processing flux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-report">What to report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-workflow">Calculation workflow</a></li>
 </ul>
             </nav>
         </div>
@@ -406,97 +407,167 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
-<ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
-</ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+  <section class="tex2jax_ignore mathjax_ignore" id="resource-processing-flux">
+<h1>Resource processing flux<a class="headerlink" href="#resource-processing-flux" title="Link to this heading">#</a></h1>
+<p>Resource processing fluxes describe how carbon or resource material moves through the MiCRM system. They are useful for connecting mechanistic simulations to measured functions such as respiration, carbon retention, resource depletion, and community-level CUE.</p>
+<section id="flux-definitions">
+<h2>Flux definitions<a class="headerlink" href="#flux-definitions" title="Link to this heading">#</a></h2>
+<p>For species <span class="math notranslate nohighlight">\(i\)</span> and resource <span class="math notranslate nohighlight">\(\alpha\)</span>, the gross uptake flux is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{uptake}}_{i\alpha}
+= C_i u_{i\alpha}R_\alpha.
+\]</div>
+<p>The retained fraction is:</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_{i\alpha}
+= 1-\sum_\beta l_{i\alpha\beta}.
+\]</div>
+<p>The retained biomass-producing flux is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{retained}}_{i\alpha}
+= C_i u_{i\alpha}R_\alpha\eta_{i\alpha}.
+\]</div>
+<p>The leakage flux from consumed resource <span class="math notranslate nohighlight">\(\alpha\)</span> into resource <span class="math notranslate nohighlight">\(\beta\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{leak}}_{i\alpha\beta}
+= C_i u_{i\alpha}R_\alpha l_{i\alpha\beta}.
+\]</div>
+<p>Maintenance loss for species <span class="math notranslate nohighlight">\(i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{maintenance}}_i = m_i C_i.
+\]</div>
+<p>These terms separate the carbon that is consumed, retained, recycled, and lost from population growth.</p>
 </section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
-<ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
-</ul>
+<section id="resource-balance">
+<h2>Resource balance<a class="headerlink" href="#resource-balance" title="Link to this heading">#</a></h2>
+<p>For leaching-style resources, the total flux balance for resource <span class="math notranslate nohighlight">\(\alpha\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dR_\alpha}{dt}
+=
+\rho_\alpha
+- \omega_\alpha R_\alpha
+- \sum_i F^{\mathrm{uptake}}_{i\alpha}
++ \sum_i\sum_\beta F^{\mathrm{leak}}_{i\beta\alpha}.
+\]</div>
+<p>At equilibrium, inflows and outflows balance:</p>
+<div class="math notranslate nohighlight">
+\[
+0
+=
+\rho_\alpha
+- \omega_\alpha R_\alpha^*
+- \sum_i C_i^*u_{i\alpha}R_\alpha^*
++ \sum_i\sum_\beta C_i^*u_{i\beta}R_\beta^*l_{i\beta\alpha}.
+\]</div>
+<p>This balance is useful for identifying which resources are depleted by direct consumption and which are replenished by cross-feeding.</p>
 </section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
+<section id="species-processing-rate">
+<h2>Species processing rate<a class="headerlink" href="#species-processing-rate" title="Link to this heading">#</a></h2>
+<p>The total gross processing rate of species <span class="math notranslate nohighlight">\(i\)</span> in a given resource state <span class="math notranslate nohighlight">\(R\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+U_i(R) = \sum_\alpha u_{i\alpha}R_\alpha.
+\]</div>
+<p>The biomass-scaled processing flux is:</p>
+<div class="math notranslate nohighlight">
+\[
+C_i U_i(R).
+\]</div>
+<p>For standardized comparisons, use a reference resource vector <span class="math notranslate nohighlight">\(R^0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+U_i^0 = U_i(R^0).
+\]</div>
+<p>This is the weighting term used in flux-weighted community CUE.</p>
+</section>
+<section id="community-processing-flux">
+<h2>Community processing flux<a class="headerlink" href="#community-processing-flux" title="Link to this heading">#</a></h2>
+<p>Total community gross uptake is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{uptake}}_{\mathrm{comm}}
+= \sum_i\sum_\alpha C_i u_{i\alpha}R_\alpha.
+\]</div>
+<p>Total retained flux is:</p>
+<div class="math notranslate nohighlight">
+\[
+F^{\mathrm{retained}}_{\mathrm{comm}}
+= \sum_i\sum_\alpha C_i u_{i\alpha}R_\alpha\eta_{i\alpha}.
+\]</div>
+<p>A direct flux-based CUE at a given resource state is:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{direct}}
+=
+\frac{F^{\mathrm{retained}}_{\mathrm{comm}}}
+{F^{\mathrm{uptake}}_{\mathrm{comm}}}.
+\]</div>
+<p>For prediction and comparison across communities, prefer the standardized reference-resource version:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\mathrm{flux}}
+=
+\frac{
+\sum_i C_i^*\sum_\alpha u_{i\alpha}R_\alpha^0\eta_{i\alpha}
+}{
+\sum_i C_i^*\sum_\alpha u_{i\alpha}R_\alpha^0
+}.
+\]</div>
+</section>
+<section id="what-to-report">
+<h2>What to report<a class="headerlink" href="#what-to-report" title="Link to this heading">#</a></h2>
+<p>For each simulation or coalescence experiment, useful resource-flux summaries include:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Interpretation</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
+<tr class="row-even"><td><p>Total uptake</p></td>
+<td><p>How much resource material the community processes</p></td>
 </tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
+<tr class="row-odd"><td><p>Total retained flux</p></td>
+<td><p>Carbon routed into biomass before maintenance losses</p></td>
 </tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
+<tr class="row-even"><td><p>Total leakage flux</p></td>
+<td><p>Strength of resource recycling and cross-feeding</p></td>
 </tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
+<tr class="row-odd"><td><p>Net growth flux</p></td>
+<td><p>Retained flux minus maintenance loss</p></td>
 </tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
+<tr class="row-even"><td><p>Resource drawdown</p></td>
+<td><p>Residual resources after community assembly</p></td>
 </tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
-</tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
+<tr class="row-odd"><td><p>Flux-weighted CUE</p></td>
+<td><p>Efficiency of dominant carbon-processing pathways</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
-</section>
-<div class="toctree-wrapper compound">
+<section id="calculation-workflow">
+<h2>Calculation workflow<a class="headerlink" href="#calculation-workflow" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uptake_flux</span> <span class="o">=</span> <span class="n">C</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">eta</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">l</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">retained_flux</span> <span class="o">=</span> <span class="n">uptake_flux</span> <span class="o">*</span> <span class="n">eta</span>
+<span class="n">leakage_flux</span> <span class="o">=</span> <span class="n">C</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">l</span>
+
+<span class="n">community_uptake</span> <span class="o">=</span> <span class="n">uptake_flux</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">community_retained</span> <span class="o">=</span> <span class="n">retained_flux</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">community_leakage</span> <span class="o">=</span> <span class="n">leakage_flux</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">direct_cue</span> <span class="o">=</span> <span class="n">community_retained</span> <span class="o">/</span> <span class="p">(</span><span class="n">community_uptake</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>When using equilibrium output, replace <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">R</span></code> with <code class="docutils literal notranslate"><span class="pre">C_eq</span></code> and <code class="docutils literal notranslate"><span class="pre">R_eq</span></code>. When comparing communities as predictors of coalescence outcome, use <code class="docutils literal notranslate"><span class="pre">R0</span></code> for standardized potential flux and use <code class="docutils literal notranslate"><span class="pre">C_eq</span></code> only as the assembled biomass weight.</p>
+<p>This page is based on the attached flux-weighted CUE notes and the resource-processing calculations used in <a class="reference external" href="https://github.com/EcoEngLab/CUE_predict_coalescence">EcoEngLab/CUE_predict_coalescence</a>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,12 +600,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="temperature.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Temperature control</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -555,10 +635,12 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-definitions">Flux definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-balance">Resource balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#species-processing-rate">Species processing rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#community-processing-flux">Community processing flux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-report">What to report</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-workflow">Calculation workflow</a></li>
 </ul>
   </nav></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>From MiCRM to GLV &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/glv';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="MiCRM stability analysis" href="micrm_stability.html" />
+    <link rel="prev" title="Analysis" href="analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -187,8 +186,8 @@
 <li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="analysis.html">Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="glv.html">From MiCRM to GLV</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="analysis.html">Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">From MiCRM to GLV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="micrm_stability.html">MiCRM stability analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="glv_stability.html">GLV stability analysis</a></li>
 </ul>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/glv.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/glv.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>From MiCRM to GLV</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +390,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glv-form">GLV form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micrm-growth-term">MiCRM growth term</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-resources-locally">Eliminating resources locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-no-leakage-example">Simple no-leakage example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-workflow">Computational workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-the-interaction-matrix">How to read the interaction matrix</a></li>
 </ul>
             </nav>
         </div>
@@ -406,97 +407,164 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
-<ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
-</ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
-<ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
-</ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="from-micrm-to-glv">
+<h1>From MiCRM to GLV<a class="headerlink" href="#from-micrm-to-glv" title="Link to this heading">#</a></h1>
+<p>The Microbial Consumer-Resource Model (MiCRM) tracks species and resources explicitly. For some analyses, it is helpful to reduce the model to species-only dynamics so that apparent interactions between species can be inspected directly. This reduced model is an effective Generalized Lotka-Volterra (effective GLV or eGLV) model.</p>
+<p>The eGLV reduction is not a replacement for MiCRM. It is a local summary of how species affect one another through the resource environment near a specified equilibrium.</p>
+<section id="glv-form">
+<h2>GLV form<a class="headerlink" href="#glv-form" title="Link to this heading">#</a></h2>
+<p>The species-only model is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dC_i}{dt}
+= C_i \left(r_i + \sum_j \alpha_{ij} C_j \right),
+\]</div>
+<p>where:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_i\)</span></p></td>
+<td><p>Biomass of consumer <span class="math notranslate nohighlight">\(i\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(r_i\)</span></p></td>
+<td><p>Effective intrinsic growth rate</p></td>
 </tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
-</tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\alpha_{ij}\)</span></p></td>
+<td><p>Effective effect of species <span class="math notranslate nohighlight">\(j\)</span> on species <span class="math notranslate nohighlight">\(i\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Negative <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> means species <span class="math notranslate nohighlight">\(j\)</span> suppresses species <span class="math notranslate nohighlight">\(i\)</span> near the reference environment. Positive <span class="math notranslate nohighlight">\(\alpha_{ij}\)</span> means species <span class="math notranslate nohighlight">\(j\)</span> facilitates species <span class="math notranslate nohighlight">\(i\)</span>, usually by modifying the resource pool in a beneficial way.</p>
 </section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
+<section id="micrm-growth-term">
+<h2>MiCRM growth term<a class="headerlink" href="#micrm-growth-term" title="Link to this heading">#</a></h2>
+<p>For MiCRM with leakage, define the retained fraction:</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_{i\alpha} = 1 - \sum_\beta l_{i\alpha\beta}.
+\]</div>
+<p>The per-capita growth contribution from resources is:</p>
+<div class="math notranslate nohighlight">
+\[
+g_i(R) = \sum_\alpha u_{i\alpha}\eta_{i\alpha}R_\alpha.
+\]</div>
+<p>The consumer equation can be written compactly as:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dC_i}{dt}
+= C_i \left(g_i(R) - m_i\right).
+\]</div>
+<p>Resources mediate all apparent species interactions. If species <span class="math notranslate nohighlight">\(j\)</span> changes resources, and species <span class="math notranslate nohighlight">\(i\)</span> depends on those resources, then species <span class="math notranslate nohighlight">\(j\)</span> has an effective interaction with species <span class="math notranslate nohighlight">\(i\)</span>.</p>
 </section>
-<div class="toctree-wrapper compound">
+<section id="eliminating-resources-locally">
+<h2>Eliminating resources locally<a class="headerlink" href="#eliminating-resources-locally" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\((\hat C, \hat R)\)</span> be a MiCRM equilibrium. The resource equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dR}{dt} = F(R, C).
+\]</div>
+<p>At equilibrium, <span class="math notranslate nohighlight">\(F(\hat R, \hat C)=0\)</span>. Locally, the implicit function theorem gives the resource response to a small change in consumer biomass:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \hat R}{\partial C}
+= -\left(\frac{\partial F}{\partial R}\right)^{-1}
+\frac{\partial F}{\partial C}.
+\]</div>
+<p>The effective interaction matrix is then:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_{ij}
+= \sum_\alpha
+u_{i\alpha}\eta_{i\alpha}
+\frac{\partial \hat R_\alpha}{\partial C_j}.
+\]</div>
+<p>After <span class="math notranslate nohighlight">\(\alpha\)</span> is known, choose <span class="math notranslate nohighlight">\(r\)</span> so that the eGLV has the same equilibrium as the MiCRM:</p>
+<div class="math notranslate nohighlight">
+\[
+r_i
+= g_i(\hat R) - m_i - \sum_j \alpha_{ij}\hat C_j.
+\]</div>
+<p>This is the core calculation used in DigiMic-style eGLV analysis.</p>
+</section>
+<section id="simple-no-leakage-example">
+<h2>Simple no-leakage example<a class="headerlink" href="#simple-no-leakage-example" title="Link to this heading">#</a></h2>
+<p>For a classical consumer-resource model with logistic resources:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dR_\alpha}{dt}
+= r_\alpha R_\alpha\left(1-\frac{R_\alpha}{K_\alpha}\right)
+- \sum_j a_{j\alpha}R_\alpha C_j,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{dC_i}{dt}
+= C_i\left(\sum_\alpha w_{i\alpha}R_\alpha - m_i\right),
+\]</div>
+<p>the effective parameters near the resource carrying capacities have the simple form:</p>
+<div class="math notranslate nohighlight">
+\[
+r_i^{\mathrm{eff}}
+= \sum_\alpha w_{i\alpha}K_\alpha - m_i,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\alpha_{ij}
+= -\sum_\alpha
+\frac{w_{i\alpha}a_{j\alpha}K_\alpha}{r_\alpha}.
+\]</div>
+<p>This simple expression is useful for intuition. In MiCRM, leakage and resource recycling make the response matrix more complex, so the equilibrium-based calculation above is preferred.</p>
+</section>
+<section id="computational-workflow">
+<h2>Computational workflow<a class="headerlink" href="#computational-workflow" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Simulate MiCRM until the derivative norm is small.</p></li>
+<li><p>Extract equilibrium biomasses <span class="math notranslate nohighlight">\(\hat C\)</span> and resources <span class="math notranslate nohighlight">\(\hat R\)</span>.</p></li>
+<li><p>Build the resource Jacobian <span class="math notranslate nohighlight">\(\partial F/\partial R\)</span>.</p></li>
+<li><p>Build the consumer-to-resource response matrix <span class="math notranslate nohighlight">\(\partial F/\partial C\)</span>.</p></li>
+<li><p>Solve the linear system for <span class="math notranslate nohighlight">\(\partial \hat R/\partial C\)</span>.</p></li>
+<li><p>Calculate <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p>Keep the surviving subsystem if the analysis should focus only on extant species.</p></li>
+<li><p>Compare MiCRM and eGLV trajectories after a small perturbation.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">calculate_elv_params</span><span class="p">(</span><span class="n">C_eq</span><span class="p">,</span> <span class="n">R_eq</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">lambda_vec</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dCdt_elv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">C</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">@</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
 </div>
+</section>
+<section id="how-to-read-the-interaction-matrix">
+<h2>How to read the interaction matrix<a class="headerlink" href="#how-to-read-the-interaction-matrix" title="Link to this heading">#</a></h2>
+<p>The rows of <span class="math notranslate nohighlight">\(\alpha\)</span> are affected species. The columns are the species causing the effect.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pattern</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\alpha_{ij}&lt;0\)</span> and <span class="math notranslate nohighlight">\(\alpha_{ji}&lt;0\)</span></p></td>
+<td><p>Net competition</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\alpha_{ij}&gt;0\)</span> and <span class="math notranslate nohighlight">\(\alpha_{ji}&gt;0\)</span></p></td>
+<td><p>Net mutual facilitation</p></td>
+</tr>
+<tr class="row-even"><td><p>Opposite signs</p></td>
+<td><p>Exploitation-like or asymmetric facilitation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weak off-diagonal values</p></td>
+<td><p>Weak apparent coupling through resources</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The reference calculations for this page follow the effective GLV derivations in the MQB interactions notebook and the equilibrium-based implementations in <a class="reference external" href="https://github.com/EcoEngLab/coalescence_robustness">EcoEngLab/coalescence_robustness</a> and <a class="reference external" href="https://github.com/DaniDuan/temp_interactions">DaniDuan/temp_interactions</a>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,12 +597,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analysis</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="micrm_stability.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">MiCRM stability analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -555,10 +632,12 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glv-form">GLV form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#micrm-growth-term">MiCRM growth term</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminating-resources-locally">Eliminating resources locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-no-leakage-example">Simple no-leakage example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-workflow">Computational workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-the-interaction-matrix">How to read the interaction matrix</a></li>
 </ul>
   </nav></div>
 

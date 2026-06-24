@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>Analysis &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/analysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="From MiCRM to GLV" href="glv.html" />
+    <link rel="prev" title="Resource processing flux" href="resource_flux.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -187,7 +186,7 @@
 <li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="analysis.html">Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="glv.html">From MiCRM to GLV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="micrm_stability.html">MiCRM stability analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="glv_stability.html">GLV stability analysis</a></li>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/analysis.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/analysis.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,9 +367,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -381,22 +378,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -406,95 +392,16 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analysis">
+<h1>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h1>
+<p>This section focuses on model interpretation after a MiCRM simulation has been run. The main tasks are to reduce MiCRM to an effective species-interaction model and to analyse stability at both the consumer-resource and species-only levels.</p>
+<p>The recommended order is:</p>
 <ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
+<li><p>Simulate MiCRM and confirm the system has reached a numerical equilibrium.</p></li>
+<li><p>Convert the equilibrium to an effective GLV model if species-level interactions are needed.</p></li>
+<li><p>Analyse full MiCRM stability using the consumer-resource Jacobian.</p></li>
+<li><p>Analyse effective GLV stability using the surviving species interaction matrix.</p></li>
 </ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
-<ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
-</ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
-</tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
-</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -529,12 +436,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="resource_flux.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Resource processing flux</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="glv.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">From MiCRM to GLV</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -544,25 +460,6 @@
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

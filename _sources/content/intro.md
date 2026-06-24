@@ -1,10 +1,22 @@
-# DigiMic project
+# About
 
-## Digital Microbiome simulation for consumer-resource ecology
+## Digital Microbiome
 
-**DigiMic** (Digital Microbiome) is a lightweight modelling package for simulating microbial community dynamics with the Microbial Consumer-Resource Model (MiCRM). It focuses on the ecological mechanisms that shape microbiomes: resource competition, metabolic leakage, cross-feeding, maintenance costs, environmental resource supply, and community-level responses to perturbations.
+**DigiMic** (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, **DigiMicPy**, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.
 
-This repository contains the Python implementation, **DigiMicPy**. It is designed as a transparent research codebase: the equations are explicit, the parameter generators are small enough to inspect, and simulations can be run directly from Python notebooks or scripts. A graphical interface is planned as the project develops.
+The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:
+
+1. **Metabolic modelling and parameterisation** from strain-level data, traits, taxa, and omics.
+2. **Microbiome modelling and prediction** with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.
+3. **Microbiome data and validation** against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.
+
+```{figure} figures/DigiMic.jpg
+:name: digimic-workflow
+:alt: Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data.
+:width: 100%
+
+Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.
+```
 
 ## What DigiMic helps you study
 
@@ -15,7 +27,10 @@ DigiMic is intended for exploratory and mechanistic microbiome modelling, especi
 - comparing communities under different leakage, supply, mortality, or resource-loss regimes;
 - studying cross-feeding and metabolic by-product structure;
 - reducing MiCRM dynamics to effective species interactions for interpretation;
-- analysing local stability, reactivity, and return rates around equilibria.
+- analysing local stability, reactivity, feasibility, and return rates around equilibria;
+- simulating community coalescence by merging pre-assembled microbiomes;
+- calculating species-level and community-level carbon use efficiency (CUE);
+- adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.
 
 ## Model overview
 
@@ -30,6 +45,8 @@ DigiMic therefore keeps both sides of microbiome dynamics visible:
 | Uptake | Consumer-resource preferences | `modular_uptake` |
 | Leakage | Metabolic by-products and cross-feeding | `modular_leakage`, `generate_l_tensor` |
 | Dynamics | Coupled ODEs for consumers and resources | `solve_ivp`, `dCdt_Rdt` |
+| Analysis | Reduced interactions and stability metrics | effective GLV, Jacobian eigenvalues, feasibility |
+| Function | Carbon processing and efficiency | species CUE, community CUE, resource fluxes |
 
 ## Current implementation
 
@@ -38,15 +55,7 @@ The current Python version contains:
 - `src/param.py`: utilities for modular uptake matrices and leakage tensors;
 - `src/micrm.py`: a complete minimal MiCRM simulation script;
 - `docs/content/*.ipynb`: executable documentation pages used to generate this website;
+- `docs/content/*.md`: theory and usage notes for extensions that are being added to the package;
 - `docs/content/figures/`: conceptual figures for the modelling framework and workflow.
 
-The documentation is organised as follows:
-
-- **The basic theory** introduces the MiCRM equations and their interpretation.
-- **Technical details** explains the simulation workflow and data structures.
-- **Basic usage** gives a runnable Python example.
-- **Analysis** describes how DigiMic outputs can be used for stability and perturbation analysis.
-
-## Project team
-
-DigiMic is developed by PawarLab / EcoEngLab at Imperial College London. The Python package is authored by Yan Zhu and Samraat Pawar.
+The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.

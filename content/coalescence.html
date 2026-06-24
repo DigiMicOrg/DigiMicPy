@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About &#8212; DigiMic</title>
+    <title>Coalescence &#8212; DigiMic</title>
   
   
   
@@ -62,10 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/coalescence';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic theory" href="theo.html" />
+    <link rel="next" title="Carbon use efficiency" href="cue.html" />
+    <link rel="prev" title="Advanced usage" href="advanced_usage.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +137,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -165,13 +164,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     About
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
@@ -180,8 +179,8 @@
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="coalescence.html">Coalescence</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Coalescence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cue.html">Carbon use efficiency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="temperature.html">Temperature control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
@@ -275,7 +274,7 @@
       
       
       
-      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/coalescence.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +304,7 @@
       
       
       
-      <li><a href="../_sources/content/intro.md" target="_blank"
+      <li><a href="../_sources/content/coalescence.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>About</h1>
+    <h1>Coalescence</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +390,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-communities">Parent communities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-overlapping-resources">Partially overlapping resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#competition-and-facilitation-metrics">Competition and facilitation metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coalescence-outcomes">Coalescence outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
 </ul>
             </nav>
         </div>
@@ -406,97 +406,186 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="about">
-<h1>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h1>
-<section id="digital-microbiome">
-<h2>Digital Microbiome<a class="headerlink" href="#digital-microbiome" title="Link to this heading">#</a></h2>
-<p><strong>DigiMic</strong> (Digital Microbiome) is an open modelling framework for predicting how microbial communities assemble, respond to environmental change, and process carbon. The current Python package, <strong>DigiMicPy</strong>, starts from the Microbial Consumer-Resource Model (MiCRM): species consume resources, leak metabolic by-products, compete through shared demand, and facilitate one another through cross-feeding.</p>
-<p>The longer-term Digital Microbiome goal is to connect three layers in a single transparent workflow:</p>
-<ol class="arabic simple">
-<li><p><strong>Metabolic modelling and parameterisation</strong> from strain-level data, traits, taxa, and omics.</p></li>
-<li><p><strong>Microbiome modelling and prediction</strong> with MiCRM, effective GLV reductions, stability analysis, coalescence experiments, carbon use efficiency, and temperature-dependent traits.</p></li>
-<li><p><strong>Microbiome data and validation</strong> against lab and real-world freshwater microbiome observations, including community composition, abundance, resource chemistry, carbon fluxes, and responses to fluctuating temperature, nutrient, and chemical regimes.</p></li>
-</ol>
-<figure class="align-default" id="digimic-workflow">
-<a class="reference internal image-reference" href="../_images/DigiMic.jpg"><img alt="Conceptual Digital Microbiome workflow linking metabolic modelling, microbiome modelling, and microbiome data." src="../_images/DigiMic.jpg" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.</span><a class="headerlink" href="#digimic-workflow" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="what-digimic-helps-you-study">
-<h2>What DigiMic helps you study<a class="headerlink" href="#what-digimic-helps-you-study" title="Link to this heading">#</a></h2>
-<p>DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="coalescence">
+<h1>Coalescence<a class="headerlink" href="#coalescence" title="Link to this heading">#</a></h1>
+<p>Community coalescence describes what happens when two previously assembled microbiomes are brought into the same environment. In DigiMic this means integrating two parental MiCRM communities to equilibrium, combining their species into one shared resource environment, and measuring which species persist after the merged system settles.</p>
+<p>This workflow is useful for questions such as:</p>
 <ul class="simple">
-<li><p>generating synthetic microbial communities with modular resource preferences;</p></li>
-<li><p>simulating consumer and resource trajectories through time;</p></li>
-<li><p>comparing communities under different leakage, supply, mortality, or resource-loss regimes;</p></li>
-<li><p>studying cross-feeding and metabolic by-product structure;</p></li>
-<li><p>reducing MiCRM dynamics to effective species interactions for interpretation;</p></li>
-<li><p>analysing local stability, reactivity, feasibility, and return rates around equilibria;</p></li>
-<li><p>simulating community coalescence by merging pre-assembled microbiomes;</p></li>
-<li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
-<li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
+<li><p>Does one parental community dominate after mixing?</p></li>
+<li><p>Do structurally complementary communities coexist more easily?</p></li>
+<li><p>Does resource overlap increase competition?</p></li>
+<li><p>Do leakage and cross-feeding increase facilitation?</p></li>
+<li><p>Is the coalesced community more or less stable than either parent?</p></li>
 </ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
+<p>The current page defines the intended theory and calculation workflow. The implementation can later be wrapped into helper functions, but all quantities can already be computed from the MiCRM state variables and parameter matrices.</p>
+<section id="parent-communities">
+<h2>Parent communities<a class="headerlink" href="#parent-communities" title="Link to this heading">#</a></h2>
+<p>For two parental communities, write the MiCRM parameters as:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head text-right"><p>Community 1</p></th>
+<th class="head text-right"><p>Community 2</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(N_1\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(N_2\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
+<tr class="row-even"><td><p>Uptake matrix</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(u^{(1)}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(u^{(2)}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
+<tr class="row-odd"><td><p>Leakage tensor</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(l^{(1)}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(l^{(2)}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
+<tr class="row-even"><td><p>Mortality vector</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(m^{(1)}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(m^{(2)}\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
+<tr class="row-odd"><td><p>Equilibrium biomass</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\hat C^{(1)}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\hat C^{(2)}\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
+<tr class="row-even"><td><p>Equilibrium resources</p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\hat R^{(1)}\)</span></p></td>
+<td class="text-right"><p><span class="math notranslate nohighlight">\(\hat R^{(2)}\)</span></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>If both communities use the same resource pool, the coalesced system is formed by stacking species-level parameters:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+u^{(3)} =
+\begin{bmatrix}
+u^{(1)} \\
+u^{(2)}
+\end{bmatrix},
+\qquad
+l^{(3)} =
+\begin{bmatrix}
+l^{(1)} \\
+l^{(2)}
+\end{bmatrix},
+\qquad
+m^{(3)} =
+\begin{bmatrix}
+m^{(1)} \\
+m^{(2)}
+\end{bmatrix}.
+\end{split}\]</div>
+<p>The initial biomass of the merged community is usually the concatenated parental equilibrium:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C^{(3)}(0) =
+\begin{bmatrix}
+\hat C^{(1)} \\
+\hat C^{(2)}
+\end{bmatrix}.
+\end{split}\]</div>
+<p>The initial resource vector can be a standard reference environment <span class="math notranslate nohighlight">\(R^0\)</span>, the resource state of one parent, an average of both parents, or a user-specified post-mixing environment. The choice should be reported because it changes the invasion conditions experienced immediately after mixing.</p>
 </section>
-<section id="current-implementation">
-<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
-<p>The current Python version contains:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">src/param.py</span></code>: utilities for modular uptake matrices and leakage tensors;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">src/micrm.py</span></code>: a complete minimal MiCRM simulation script;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.ipynb</span></code>: executable documentation pages used to generate this website;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/*.md</span></code>: theory and usage notes for extensions that are being added to the package;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/content/figures/</span></code>: conceptual figures for the modelling framework and workflow.</p></li>
-</ul>
-<p>The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.</p>
+<section id="partially-overlapping-resources">
+<h2>Partially overlapping resources<a class="headerlink" href="#partially-overlapping-resources" title="Link to this heading">#</a></h2>
+<p>When parental communities are assembled on different but partially overlapping resource sets, first build a union resource list. Each parental uptake matrix and leakage tensor is then embedded into that common resource space.</p>
+<p>For species from community 1, set uptake to zero for resources not available in community 1 before coalescence. Do the same for community 2. This keeps parental physiology intact while allowing the merged community to experience a broader resource environment.</p>
+<p>The resource-overlap ratio is:</p>
+<div class="math notranslate nohighlight">
+\[
+\Omega_R = \frac{|R^{(1)} \cap R^{(2)}|}{|R^{(1)} \cup R^{(2)}|}.
+\]</div>
+<p>Higher <span class="math notranslate nohighlight">\(\Omega_R\)</span> usually means stronger direct competition, while lower overlap can create more room for complementarity if leaked resources from one community are usable by the other.</p>
 </section>
-<div class="toctree-wrapper compound">
+<section id="competition-and-facilitation-metrics">
+<h2>Competition and facilitation metrics<a class="headerlink" href="#competition-and-facilitation-metrics" title="Link to this heading">#</a></h2>
+<p>A simple community-level competition metric is the mean cosine similarity between uptake rows:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{competition}
+= \frac{2}{N(N-1)}
+\sum_{i&lt;j}
+\frac{u_i \cdot u_j}{||u_i||\,||u_j||}.
+\]</div>
+<p>This is high when species consume similar resources.</p>
+<p>An effective leakage profile for species <span class="math notranslate nohighlight">\(i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+L^{\mathrm{eff}}_{i\beta}
+= \sum_\alpha u_{i\alpha} l_{i\alpha\beta}.
+\]</div>
+<p>This records which resources are produced as by-products after accounting for what the species consumes. A practical facilitation score compares the resources leaked by species <span class="math notranslate nohighlight">\(i\)</span> with the uptake preferences of the other species:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{facilitation}_i
+= \sum_\beta L^{\mathrm{eff}}_{i\beta}
+\left(\frac{1}{N-1}\sum_{j \ne i} u_{j\beta}\right).
+\]</div>
+<p>High values indicate that a species tends to leak resources that other species can use.</p>
+</section>
+<section id="coalescence-outcomes">
+<h2>Coalescence outcomes<a class="headerlink" href="#coalescence-outcomes" title="Link to this heading">#</a></h2>
+<p>After integrating the merged MiCRM to equilibrium, calculate:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Survivors</p></td>
+<td><p>Species with <span class="math notranslate nohighlight">\(C_i^* &gt; \theta\)</span>, where <span class="math notranslate nohighlight">\(\theta\)</span> is a small threshold such as <code class="docutils literal notranslate"><span class="pre">1e-5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Origin biomass</p></td>
+<td><p>Total biomass of species originating from each parent</p></td>
+</tr>
+<tr class="row-even"><td><p>Dominant parent</p></td>
+<td><p>Parent with larger biomass contribution in the coalesced equilibrium</p></td>
+</tr>
+<tr class="row-odd"><td><p>Similarity to parents</p></td>
+<td><p>Bray-Curtis or other abundance similarity between the merged state and each parent</p></td>
+</tr>
+<tr class="row-even"><td><p>Resource drawdown</p></td>
+<td><p>Total or resource-wise residual resource abundance</p></td>
+</tr>
+<tr class="row-odd"><td><p>Stability</p></td>
+<td><p>Leading real eigenvalue of the MiCRM or effective GLV Jacobian</p></td>
+</tr>
+<tr class="row-even"><td><p>Feasibility</p></td>
+<td><p>Whether all surviving species have positive equilibrium biomass</p></td>
+</tr>
+</tbody>
+</table>
 </div>
+<p>The basic simulation workflow is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Assemble two parental communities</span>
+<span class="n">sol1</span> <span class="o">=</span> <span class="n">solve_micrm</span><span class="p">(</span><span class="n">params1</span><span class="p">)</span>
+<span class="n">sol2</span> <span class="o">=</span> <span class="n">solve_micrm</span><span class="p">(</span><span class="n">params2</span><span class="p">)</span>
+
+<span class="c1"># 2. Build the merged parameter set</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">])</span>
+<span class="n">l3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">])</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">])</span>
+<span class="n">C0_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">C1_eq</span><span class="p">,</span> <span class="n">C2_eq</span><span class="p">])</span>
+
+<span class="c1"># 3. Integrate the coalesced community</span>
+<span class="n">sol3</span> <span class="o">=</span> <span class="n">solve_micrm</span><span class="p">(</span><span class="n">u3</span><span class="p">,</span> <span class="n">l3</span><span class="p">,</span> <span class="n">m3</span><span class="p">,</span> <span class="n">C0_3</span><span class="p">,</span> <span class="n">R0_mix</span><span class="p">)</span>
+
+<span class="c1"># 4. Measure dominance, survivors, resources, stability, and CUE</span>
+</pre></div>
+</div>
+</section>
+<section id="interpretation">
+<h2>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">#</a></h2>
+<p>Coalescence is not only a species-mixing experiment. It is also a test of whether two resource-processing systems can coexist. Communities with very similar uptake profiles tend to compete strongly. Communities with complementary uptake and leakage can create stabilising cross-feeding if the by-products of one group match the demands of another.</p>
+<p>The reference implementation used for this page is the coalescence workflow in <a class="reference external" href="https://github.com/EcoEngLab/coalescence_robustness">EcoEngLab/coalescence_robustness</a>, especially its community stacking, competition-facilitation metrics, effective GLV reduction, and post-merge stability calculations.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,12 +618,21 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="advanced_usage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced usage</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="theo.html"
+       href="cue.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic theory</p>
+        <p class="prev-next-title">Carbon use efficiency</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -555,10 +653,11 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-communities">Parent communities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-overlapping-resources">Partially overlapping resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#competition-and-facilitation-metrics">Competition and facilitation metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coalescence-outcomes">Coalescence outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
 </ul>
   </nav></div>
 
