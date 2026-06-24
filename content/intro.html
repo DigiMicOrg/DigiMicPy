@@ -391,7 +391,6 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
 </ul>
             </nav>
@@ -436,50 +435,6 @@
 <li><p>calculating species-level and community-level carbon use efficiency (CUE);</p></li>
 <li><p>adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.</p></li>
 </ul>
-</section>
-<section id="model-overview">
-<h2>Model overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h2>
-<p>The core state variables are consumer biomasses <span class="math notranslate nohighlight">\(C_i\)</span> and resource abundances <span class="math notranslate nohighlight">\(R_\alpha\)</span>. Each consumer takes up resources according to an uptake matrix <span class="math notranslate nohighlight">\(u_{i\alpha}\)</span>, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor <span class="math notranslate nohighlight">\(l_{i\alpha\beta}\)</span>. Resources also enter and leave the environment through supply and decay terms.</p>
-<p>DigiMic therefore keeps both sides of microbiome dynamics visible:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Layer</p></th>
-<th class="head"><p>What it represents</p></th>
-<th class="head"><p>Examples in the code</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Consumers</p></td>
-<td><p>Microbial populations or strains</p></td>
-<td><p><span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span>, <span class="math notranslate nohighlight">\(m_i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p>Resources</p></td>
-<td><p>Metabolites, nutrients, or abstract resource classes</p></td>
-<td><p><span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(R_\alpha\)</span>, <span class="math notranslate nohighlight">\(\rho_\alpha\)</span>, <span class="math notranslate nohighlight">\(\omega_\alpha\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p>Uptake</p></td>
-<td><p>Consumer-resource preferences</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_uptake</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Leakage</p></td>
-<td><p>Metabolic by-products and cross-feeding</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">modular_leakage</span></code>, <code class="docutils literal notranslate"><span class="pre">generate_l_tensor</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>Dynamics</p></td>
-<td><p>Coupled ODEs for consumers and resources</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, <code class="docutils literal notranslate"><span class="pre">dCdt_Rdt</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>Analysis</p></td>
-<td><p>Reduced interactions and stability metrics</p></td>
-<td><p>effective GLV, Jacobian eigenvalues, feasibility</p></td>
-</tr>
-<tr class="row-even"><td><p>Function</p></td>
-<td><p>Carbon processing and efficiency</p></td>
-<td><p>species CUE, community CUE, resource fluxes</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </section>
 <section id="current-implementation">
 <h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
@@ -555,7 +510,6 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-microbiome">Digital Microbiome</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-digimic-helps-you-study">What DigiMic helps you study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">Model overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
 </ul>
   </nav></div>

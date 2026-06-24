@@ -32,22 +32,6 @@ DigiMic is intended for exploratory and mechanistic microbiome modelling, especi
 - calculating species-level and community-level carbon use efficiency (CUE);
 - adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.
 
-## Model overview
-
-The core state variables are consumer biomasses $C_i$ and resource abundances $R_\alpha$. Each consumer takes up resources according to an uptake matrix $u_{i\alpha}$, converts part of the uptake into growth, and leaks the rest into other resources through a leakage tensor $l_{i\alpha\beta}$. Resources also enter and leave the environment through supply and decay terms.
-
-DigiMic therefore keeps both sides of microbiome dynamics visible:
-
-| Layer | What it represents | Examples in the code |
-|---|---|---|
-| Consumers | Microbial populations or strains | $N$, $C_i$, $m_i$ |
-| Resources | Metabolites, nutrients, or abstract resource classes | $M$, $R_\alpha$, $\rho_\alpha$, $\omega_\alpha$ |
-| Uptake | Consumer-resource preferences | `modular_uptake` |
-| Leakage | Metabolic by-products and cross-feeding | `modular_leakage`, `generate_l_tensor` |
-| Dynamics | Coupled ODEs for consumers and resources | `solve_ivp`, `dCdt_Rdt` |
-| Analysis | Reduced interactions and stability metrics | effective GLV, Jacobian eigenvalues, feasibility |
-| Function | Carbon processing and efficiency | species CUE, community CUE, resource fluxes |
-
 ## Current implementation
 
 The current Python version contains:
