@@ -7,4 +7,19 @@ chapters:
 - file: content/theo
 - file: content/details
 - file: content/useinfo
-- file: content/analysisinfo
+- file: content/advanced_usage
+  sections:
+  - file: content/coalescence
+  - file: content/cue
+  - file: content/temperature
+  - file: content/resource_flux
+- file: content/analysis
+  sections:
+  - file: content/glv
+  - file: content/micrm_stability
+  - file: content/glv_stability
+- file: content/support
+  sections:
+  - file: content/contributors
+  - file: content/funding
+- file: content/contact

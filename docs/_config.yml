@@ -3,8 +3,11 @@
 
 title: DigiMic
 author: Yan Zhu, Samraat Pawar
-copyright: "2025, EcoEngLab"
+copyright: "2026, EcoEngLab"
 logo: logo.png
+
+exclude_patterns:
+  - content/analysisinfo.ipynb
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -37,4 +40,3 @@ parse:
   myst_enable_extensions:
     - dollarmath
     - amsmath
-
