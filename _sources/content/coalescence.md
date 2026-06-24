@@ -141,4 +141,3 @@ sol3 = solve_micrm(u3, l3, m3, C0_3, R0_mix)
 
 Coalescence is not only a species-mixing experiment. It is also a test of whether two resource-processing systems can coexist. Communities with very similar uptake profiles tend to compete strongly. Communities with complementary uptake and leakage can create stabilising cross-feeding if the by-products of one group match the demands of another.
 
-The reference implementation used for this page is the coalescence workflow in [EcoEngLab/coalescence_robustness](https://github.com/EcoEngLab/coalescence_robustness), especially its community stacking, competition-facilitation metrics, effective GLV reduction, and post-merge stability calculations.
