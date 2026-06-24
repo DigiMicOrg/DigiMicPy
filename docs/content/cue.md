@@ -124,4 +124,4 @@ community_cue_flux = np.average(
 )
 ```
 
-The species and community CUE definitions here are based on [EcoEngLab/CUE_predict_coalescence](https://github.com/EcoEngLab/CUE_predict_coalescence) and the attached notes on flux-weighted community CUE.
+

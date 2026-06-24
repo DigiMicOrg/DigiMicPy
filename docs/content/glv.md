@@ -139,4 +139,4 @@ The rows of $\alpha$ are affected species. The columns are the species causing t
 | Opposite signs | Exploitation-like or asymmetric facilitation |
 | Weak off-diagonal values | Weak apparent coupling through resources |
 
-The reference calculations for this page follow the effective GLV derivations in the MQB interactions notebook and the equilibrium-based implementations in [EcoEngLab/coalescence_robustness](https://github.com/EcoEngLab/coalescence_robustness) and [DaniDuan/temp_interactions](https://github.com/DaniDuan/temp_interactions).
+

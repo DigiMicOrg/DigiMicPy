@@ -95,4 +95,4 @@ def dCdt_Rdt_temperature(t, y, params):
 - Recompute effective GLV parameters separately at each equilibrium or time window.
 - Report whether temperature changes only physiology or also resource supply and loss.
 
-The reference implementation for this page is [DaniDuan/temp_interactions](https://github.com/DaniDuan/temp_interactions), which uses temperature-dependent microbial traits, MiCRM dynamics, and effective interaction calculations to predict how microbial interactions vary with temperature.
+

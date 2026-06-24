@@ -154,4 +154,4 @@ direct_cue = community_retained / (community_uptake + 1e-12)
 
 When using equilibrium output, replace `C` and `R` with `C_eq` and `R_eq`. When comparing communities as predictors of coalescence outcome, use `R0` for standardized potential flux and use `C_eq` only as the assembled biomass weight.
 
-This page is based on the attached flux-weighted CUE notes and the resource-processing calculations used in [EcoEngLab/CUE_predict_coalescence](https://github.com/EcoEngLab/CUE_predict_coalescence).
+
