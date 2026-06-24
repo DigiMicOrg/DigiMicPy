@@ -43,3 +43,12 @@ The current Python version contains:
 - `docs/content/figures/`: conceptual figures for the modelling framework and workflow.
 
 The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.
+
+
+## Development and community contribution
+
+DigiMic is actively under development. Our aim is to establish a transparent core workflow that can support a growing set of modular extensions as new modelling, data-integration, and analysis needs arise.
+
+Rather than treating every capability as a fixed part of the package, DigiMic is designed to accommodate optional components that can be integrated into the core workflow when they are useful for a particular research question. These may include new parameterisation methods, metabolic-model interfaces, host-response modules, inference tools, experimental-design workflows, or domain-specific analysis functions.
+
+We welcome researchers from across microbiology, ecology, metabolic modelling, bioinformatics, environmental science, and related fields to use DigiMic and help shape its development. Contributions may take the form of independently developed extensions, code contributions, examples and datasets, or clearly defined feature requests motivated by real research needs.
