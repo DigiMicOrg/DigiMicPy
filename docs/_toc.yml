@@ -19,7 +19,4 @@ chapters:
   - file: content/micrm_stability
   - file: content/glv_stability
 - file: content/support
-  sections:
-  - file: content/contributors
-  - file: content/funding
 - file: content/contact
