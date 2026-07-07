@@ -18,5 +18,6 @@ chapters:
   - file: content/glv
   - file: content/micrm_stability
   - file: content/glv_stability
+- file: content/microbial_growth_tpc_predictor_intro
 - file: content/support
 - file: content/contact
