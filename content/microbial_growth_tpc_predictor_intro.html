@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TPC Prediction Package (TPCP) &#8212; DigiMic</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/microbial_growth_tpc_predictor_intro';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Support" href="support.html" />
+    <link rel="prev" title="GLV stability analysis" href="glv_stability.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="DigiMic - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="DigiMic - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    About
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="theo.html">Basic theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="details.html">Technical details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useinfo.html">Basic usage</a></li>
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_usage.html">Advanced usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="coalescence.html">Coalescence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cue.html">Carbon use efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="temperature.html">Temperature control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_flux.html">Resource processing flux</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="analysis.html">Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="glv.html">From MiCRM to GLV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="micrm_stability.html">MiCRM stability analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glv_stability.html">GLV stability analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TPC Prediction Package (TPCP)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact Us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/EcoEngLab/DigiMicPy/issues/new?title=Issue%20on%20page%20%2Fcontent/microbial_growth_tpc_predictor_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/microbial_growth_tpc_predictor_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TPC Prediction Package (TPCP)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TPC Prediction Package (TPCP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TPC Prediction Package (TPCP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-informed-prediction-of-microbial-growth-temperature-performance-curves">Sequence-informed prediction of microbial growth temperature-performance curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-toolkit-can-be-used-for">What this toolkit can be used for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-model-architecture">Overview of the model architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-components">Model components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ogt-prediction-module">1. OGT prediction module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpc-shape-prediction-module">2. TPC shape prediction module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fba-anchor-module">3. FBA anchor module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-the-toolkit">How to use the toolkit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-fasta-file">1. Prepare the FASTA file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-medium-file">2. Prepare the medium file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-temperature-range">3. Set the temperature range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-full-tpc-prediction">4. Run the full TPC prediction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-summary">Output summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-development">Future development</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tpc-prediction-package-tpcp">
+<h1>TPC Prediction Package (TPCP)<a class="headerlink" href="#tpc-prediction-package-tpcp" title="Link to this heading">#</a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#sequence-informed-prediction-of-microbial-growth-temperature-performance-curves"><span class="xref myst">Sequence-informed prediction of microbial growth temperature-performance curves</span></a></p></li>
+<li><p><a class="reference internal" href="#what-this-toolkit-can-be-used-for"><span class="xref myst">What this toolkit can be used for</span></a></p></li>
+<li><p><a class="reference internal" href="#overview-of-the-model-architecture"><span class="xref myst">Overview of the model architecture</span></a></p></li>
+<li><p><a class="reference internal" href="#model-components"><span class="xref myst">Model components</span></a></p></li>
+<li><p><a class="reference internal" href="#current-implementation"><span class="xref myst">Current implementation</span></a></p></li>
+<li><p><a class="reference internal" href="#how-to-use-the-toolkit"><span class="xref myst">How to use the toolkit</span></a></p></li>
+<li><p><a class="reference internal" href="#output-summary"><span class="xref myst">Output summary</span></a></p></li>
+<li><p><a class="reference internal" href="#future-development"><span class="xref myst">Future development</span></a></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>TPC Prediction Package (TPCP)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="sequence-informed-prediction-of-microbial-growth-temperature-performance-curves">
+<h2>Sequence-informed prediction of microbial growth temperature-performance curves<a class="headerlink" href="#sequence-informed-prediction-of-microbial-growth-temperature-performance-curves" title="Link to this heading">#</a></h2>
+<p>The <strong>Microbial Growth TPC Predictor</strong> is a modelling toolkit for predicting microbial growth temperature-performance curves (TPCs) from genome- and proteome-level sequence information. The aim of the toolkit is to predict the relative or absolute growth performance of microorganisms across temperature when complete experimental growth curves are unavailable.</p>
+<p>Microbial growth is strongly temperature dependent. Different species may differ in their optimal growth temperature, low-temperature tolerance, high-temperature sensitivity, and the shape of growth decline beyond the thermal optimum. Therefore, predicting a single optimal growth temperature is not sufficient to describe microbial thermal adaptation. This toolkit aims to predict the complete growth temperature-performance curve from sequence information, thereby providing a more systematic description of how microbial growth rate varies with temperature.</p>
+<p>The current version mainly focuses on bacteria and archaea. It predicts normalised microbial growth TPCs and can optionally use flux balance analysis (FBA) to estimate a peak growth rate, allowing the normalised curve to be converted into an absolute growth-rate TPC.</p>
+</section>
+<section id="what-this-toolkit-can-be-used-for">
+<h2>What this toolkit can be used for<a class="headerlink" href="#what-this-toolkit-can-be-used-for" title="Link to this heading">#</a></h2>
+<p>This toolkit is designed for questions in microbial ecology, thermal adaptation, genome-informed trait prediction, and physiological modelling. It is particularly useful for cross-species prediction when experimental temperature-response data are limited.</p>
+<p>Typical applications include:</p>
+<ul class="simple">
+<li><p>predicting complete microbial growth temperature-performance curves from genome or proteome information;</p></li>
+<li><p>predicting the optimal growth temperature (OGT) of bacterial and archaeal species;</p></li>
+<li><p>comparing thermal adaptation strategies across psychrophilic, mesophilic, thermophilic, and archaeal taxa;</p></li>
+<li><p>generating species-specific normalised temperature-response functions;</p></li>
+<li><p>using FBA to scale normalised TPCs into absolute growth-rate curves when genome or metabolic information is available;</p></li>
+<li><p>providing temperature-dependent growth traits for downstream ecological models, community simulations, or environmental response analyses.</p></li>
+</ul>
+</section>
+<section id="overview-of-the-model-architecture">
+<h2>Overview of the model architecture<a class="headerlink" href="#overview-of-the-model-architecture" title="Link to this heading">#</a></h2>
+<p>The toolkit consists of three connected modelling layers. The first layer predicts OGT from ESM-2 proteome embeddings. The second layer predicts the shape of the microbial growth TPC from proteome embeddings. The third layer optionally uses FBA as an absolute-scale anchor to convert the normalised TPC into a growth-rate curve with physical units.</p>
+<p>The first layer uses sequence-derived proteome representations to predict the optimal growth temperature of the target microorganism. Specifically, protein sequences are represented using ESM-2 embeddings, and the resulting organism-level proteome embedding is used to infer OGT. This predicted OGT is subsequently used as a biological anchor for the peak position of the TPC.</p>
+<p>The second layer uses the mean-pooled ESM-2 proteome embedding to represent organism-level protein sequence information and passes it into the core TPC shape prediction model. This model combines neural network components, a mechanism-inspired Universal Temperature Performance Curve (UTPC) structure, and a constrained residual correction module to predict a complete growth TPC whose peak is normalised to 1.</p>
+<p>The third layer is an optional metabolic anchoring step. When the user requires an absolute growth-rate curve rather than only a relative growth response, genome-scale metabolic reconstruction and FBA can be used to estimate the peak growth rate under a specified medium condition. The model then scales the normalised TPC by this estimated peak growth rate, producing a growth-rate TPC with absolute units.</p>
+<p>Overall, the model can be summarised as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>genome / proteome information
+→ ESM-2 proteome embedding
+→ OGT prediction
+→ proteome embedding-based TPC shape prediction
+→ normalised growth TPC
+→ optional FBA-based absolute scaling
+→ absolute growth-rate TPC
+</pre></div>
+</div>
+</section>
+<section id="model-components">
+<h2>Model components<a class="headerlink" href="#model-components" title="Link to this heading">#</a></h2>
+<section id="ogt-prediction-module">
+<h3>1. OGT prediction module<a class="headerlink" href="#ogt-prediction-module" title="Link to this heading">#</a></h3>
+<p>The OGT prediction module estimates the optimal growth temperature of a microorganism from proteome-level sequence representations. Protein sequences are first encoded using the ESM-2 protein language model. The resulting protein-level embeddings are then aggregated into an organism-level proteome embedding, which is used as the input to the OGT prediction model.</p>
+<p>The model outputs a predicted OGT in degrees Celsius. This predicted value is not only an independent thermal adaptation trait, but also serves as a constraint on the peak temperature of the downstream TPC prediction model.</p>
+</section>
+<section id="tpc-shape-prediction-module">
+<h3>2. TPC shape prediction module<a class="headerlink" href="#tpc-shape-prediction-module" title="Link to this heading">#</a></h3>
+<p>The TPC shape prediction module is the core component of the toolkit. It uses the ESM-2 protein language model to obtain protein sequence representations, which are then aggregated by mean pooling to generate an organism-level proteome embedding.</p>
+<p>This embedding is passed into the core neural network model to predict the shape parameters of the TPC. The model includes a mechanism-inspired component based on the Universal Temperature Performance Curve (UTPC), which provides a biologically meaningful baseline curve. In addition, a residual correction module is used to capture species-specific deviations that may not be fully represented by the UTPC component alone.</p>
+<p>To reduce biologically implausible predictions, the model includes constraints on curve behaviour, with particular emphasis on the post-peak decline. The final output is a normalised growth TPC in which the maximum growth value is scaled to 1.</p>
+</section>
+<section id="fba-anchor-module">
+<h3>3. FBA anchor module<a class="headerlink" href="#fba-anchor-module" title="Link to this heading">#</a></h3>
+<p>The FBA anchor module is an optional component for converting the normalised TPC into an absolute growth-rate curve. This module can construct a genome-scale metabolic model from the input genome and run flux balance analysis under user-defined medium conditions.</p>
+<p>The peak growth rate obtained from FBA is treated as an absolute-scale anchor. The model then multiplies the normalised TPC by this peak growth rate to obtain absolute growth-rate predictions across temperature.</p>
+<p>If the user does not run FBA, the toolkit still outputs a normalised TPC. This normalised curve can still be used to compare the shape of thermal responses across species.</p>
+</section>
+</section>
+<section id="current-implementation">
+<h2>Current implementation<a class="headerlink" href="#current-implementation" title="Link to this heading">#</a></h2>
+<p>The toolkit is available in both modular and consolidated single-file forms.</p>
+<p>The modular implementation mainly includes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OGT_predictor.py</span></code>: used for training and applying the OGT prediction model;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core_model.py</span></code>: used for training the core TPC shape prediction model;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TPC_predictor.py</span></code>: used for predicting TPCs from trained models;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FBA_anchor_point.py</span></code>: used for optional FBA-based estimation of peak growth rate.</p></li>
+</ul>
+<p>For easier execution and documentation, the main functions have also been consolidated into a single script:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>microbial_tpc_single_file.py
+</pre></div>
+</div>
+<p>This file provides a unified command-line interface for OGT prediction, TPC prediction, and FBA anchoring.</p>
+</section>
+<section id="how-to-use-the-toolkit">
+<h2>How to use the toolkit<a class="headerlink" href="#how-to-use-the-toolkit" title="Link to this heading">#</a></h2>
+<p>The toolkit is designed to predict a complete microbial growth temperature-performance curve from a user-provided sequence file and medium condition. The output is a growth-rate TPC with physical units over a user-defined temperature range.</p>
+<p>The user needs to provide three inputs:</p>
+<ol class="arabic simple">
+<li><p>a FASTA file for the target microorganism;</p></li>
+<li><p>a medium definition file;</p></li>
+<li><p>the temperature range over which growth should be predicted.</p></li>
+</ol>
+<p>The final output is a CSV file containing the predicted absolute growth rate at each temperature.</p>
+<section id="prepare-the-fasta-file">
+<h3>1. Prepare the FASTA file<a class="headerlink" href="#prepare-the-fasta-file" title="Link to this heading">#</a></h3>
+<p>The user first prepares a FASTA file for the target microorganism, for example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>genome.fna
+</pre></div>
+</div>
+<p>This file can be a genome FASTA file for the target microorganism. The toolkit uses this sequence information to generate the representations needed for OGT prediction, TPC shape prediction, and metabolic model construction.</p>
+</section>
+<section id="prepare-the-medium-file">
+<h3>2. Prepare the medium file<a class="headerlink" href="#prepare-the-medium-file" title="Link to this heading">#</a></h3>
+<p>The user also needs to prepare a medium file defining the nutrient conditions for the FBA model. The medium file uses JSON format, for example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EX_glc__D_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_o2_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_nh4_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_pi_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_so4_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_h2o_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EX_h_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each entry specifies an exchange reaction that is allowed to take up a nutrient, together with its uptake bound. For example, <code class="docutils literal notranslate"><span class="pre">EX_glc__D_e</span></code> denotes D-glucose, <code class="docutils literal notranslate"><span class="pre">EX_o2_e</span></code> denotes oxygen, and the numerical values specify the maximum available flux for each compound.</p>
+<p>To modify the medium condition, the user only needs to edit this JSON file. For example, the glucose uptake bound can be changed from:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;EX_glc__D_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;EX_glc__D_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span>
+</pre></div>
+</div>
+<p>to represent a lower-glucose environment.</p>
+<p>To simulate an anaerobic condition, oxygen can be set to zero:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;EX_o2_e&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>The exchange reaction IDs in the medium file must match the reaction IDs in the metabolic model.</p>
+</section>
+<section id="set-the-temperature-range">
+<h3>3. Set the temperature range<a class="headerlink" href="#set-the-temperature-range" title="Link to this heading">#</a></h3>
+<p>The user specifies the temperature range using the minimum temperature, maximum temperature, and temperature step size. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--temp_min 5
+--temp_max 80
+--temp_step 1
+</pre></div>
+</div>
+<p>This setting predicts growth rate from 5°C to 80°C at 1°C intervals.</p>
+<p>For a finer temperature grid, such as 0.5°C intervals, the user can specify:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--temp_min 10
+--temp_max 50
+--temp_step 0.5
+</pre></div>
+</div>
+</section>
+<section id="run-the-full-tpc-prediction">
+<h3>4. Run the full TPC prediction<a class="headerlink" href="#run-the-full-tpc-prediction" title="Link to this heading">#</a></h3>
+<p>After preparing the FASTA file, medium file, and temperature range, the user can run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>microbial_tpc_single_file.py<span class="w"> </span>predict<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--fasta<span class="w"> </span>genome.fna<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--medium<span class="w"> </span>medium.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--temp_min<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--temp_max<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--temp_step<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span>predicted_absolute_tpc.csv
+</pre></div>
+</div>
+<p>This command performs the following steps:</p>
+<ol class="arabic simple">
+<li><p>generates sequence-based representations from the FASTA file;</p></li>
+<li><p>predicts the optimal growth temperature of the target microorganism;</p></li>
+<li><p>predicts the normalised TPC shape from proteome-level sequence information;</p></li>
+<li><p>runs FBA under the user-defined medium condition to estimate the peak growth rate;</p></li>
+<li><p>scales the normalised TPC using the FBA-derived peak growth rate;</p></li>
+<li><p>outputs a complete growth-rate TPC with physical units.</p></li>
+</ol>
+</section>
+</section>
+<section id="output-summary">
+<h2>Output summary<a class="headerlink" href="#output-summary" title="Link to this heading">#</a></h2>
+<p>The final output file is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>predicted_absolute_tpc.csv
+</pre></div>
+</div>
+<p>This file contains the predicted growth rate of the target microorganism across the specified temperature range. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>temperature_C,relative_growth,absolute_growth_rate
+5.0,0.01,0.004
+6.0,0.02,0.008
+7.0,0.03,0.012
+...
+37.0,1.00,0.400
+...
+80.0,0.00,0.000
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">temperature_C</span></code> is the prediction temperature in degrees Celsius; <code class="docutils literal notranslate"><span class="pre">relative_growth</span></code> is the normalised TPC value, with the peak scaled to 1; and <code class="docutils literal notranslate"><span class="pre">absolute_growth_rate</span></code> is the absolute growth rate after scaling by the FBA-derived peak growth rate, typically expressed in h⁻¹.</p>
+<p>Thus, the user obtains a complete microbial growth-rate temperature-performance curve with physical units:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>temperature → absolute growth rate
+</pre></div>
+</div>
+<p>This curve represents the predicted growth rate of the target microorganism across temperature under the specified medium condition.</p>
+<p>The main outputs of the model include:</p>
+<ul class="simple">
+<li><p>predicted OGT;</p></li>
+<li><p>normalised relative growth values across temperature;</p></li>
+<li><p>TPC curve parameters;</p></li>
+<li><p>FBA-derived peak growth rate;</p></li>
+<li><p>absolute growth-rate TPC.</p></li>
+</ul>
+<p>The normalised TPC can be written as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>μ_relative(T) ∈ [0, 1]
+</pre></div>
+</div>
+<p>When the FBA anchor is used, the absolute growth rate is calculated as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>μ_absolute(T) = μ_relative(T) × μ_peak,FBA
+</pre></div>
+</div>
+</section>
+<section id="future-development">
+<h2>Future development<a class="headerlink" href="#future-development" title="Link to this heading">#</a></h2>
+<p>The current version focuses on sequence-informed prediction of bacterial and archaeal growth TPCs. Future development may extend the toolkit in several directions:</p>
+<ul class="simple">
+<li><p>improving proteome embedding strategies;</p></li>
+<li><p>incorporating more robust uncertainty estimation;</p></li>
+<li><p>adding phylogenetic constraints;</p></li>
+<li><p>extending the framework to broader taxonomic groups and additional physiological traits;</p></li>
+<li><p>improving the stability and automation of FBA anchoring;</p></li>
+<li><p>supporting batch prediction for multi-species datasets;</p></li>
+<li><p>validating extrapolation performance using additional experimental temperature-response datasets.</p></li>
+</ul>
+<p>The long-term goal is to establish an interpretable predictive framework from genome or proteome sequence to microbial thermal physiology. This framework can provide a computational tool for studying microbial thermal adaptation and temperature-dependent growth when complete experimental TPC data are unavailable.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="glv_stability.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">GLV stability analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="support.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Support</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TPC Prediction Package (TPCP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TPC Prediction Package (TPCP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-informed-prediction-of-microbial-growth-temperature-performance-curves">Sequence-informed prediction of microbial growth temperature-performance curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-this-toolkit-can-be-used-for">What this toolkit can be used for</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-model-architecture">Overview of the model architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-components">Model components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ogt-prediction-module">1. OGT prediction module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpc-shape-prediction-module">2. TPC shape prediction module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fba-anchor-module">3. FBA anchor module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-implementation">Current implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-the-toolkit">How to use the toolkit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-fasta-file">1. Prepare the FASTA file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-medium-file">2. Prepare the medium file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-temperature-range">3. Set the temperature range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-full-tpc-prediction">4. Run the full TPC prediction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-summary">Output summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-development">Future development</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yan Zhu, Samraat Pawar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, EcoEngLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
