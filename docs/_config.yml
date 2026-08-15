@@ -2,8 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: DigiMic
-author: Yan Zhu, Samraat Pawar
-copyright: "2026, EcoEngLab"
+copyright: "2026, DigiMic Collective"
 logo: logo.png
 
 exclude_patterns:
