@@ -34,9 +34,11 @@ def _freeze(array: FloatArray) -> FloatArray:
     return array
 
 
-@dataclass(frozen=True, slots=True, init=False)
+@dataclass(frozen=True, slots=True, init=False, eq=False)
 class MiCRMParameters:
     """Validated parameters for a microbial consumer-resource model."""
+
+    __hash__ = None
 
     uptake: FloatArray
     mortality: FloatArray
@@ -122,3 +124,28 @@ class MiCRMParameters:
         """Number of resources represented by the model."""
 
         return self.uptake.shape[1]
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, MiCRMParameters):
+            return NotImplemented
+        return all(
+            np.array_equal(left, right)
+            for left, right in zip(
+                (
+                    self.uptake,
+                    self.mortality,
+                    self.resource_supply,
+                    self.resource_decay,
+                    self.leakage,
+                    self.leakage_fraction,
+                ),
+                (
+                    other.uptake,
+                    other.mortality,
+                    other.resource_supply,
+                    other.resource_decay,
+                    other.leakage,
+                    other.leakage_fraction,
+                ),
+            )
+        )

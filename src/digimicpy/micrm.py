@@ -94,11 +94,14 @@ def solve_micrm(
         require_nonnegative=True,
     )
     evaluation_times = None if t_eval is None else np.asarray(t_eval, dtype=float)
+
+    def model_rhs(time: float, state: FloatArray) -> FloatArray:
+        return micrm_rhs(time, state, parameters)
+
     return solve_ivp(
-        micrm_rhs,
+        model_rhs,
         t_span,
         state_array,
         t_eval=evaluation_times,
-        args=(parameters,),
         **solver_options,
     )

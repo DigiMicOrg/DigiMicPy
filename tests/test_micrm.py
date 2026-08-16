@@ -91,6 +91,57 @@ class MiCRMDynamicsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "nonnegative"):
             solve_micrm(parameters, [-0.1, 1.0], (0.0, 1.0))
 
+    def test_solver_preserves_standard_event_callback_signature(self):
+        parameters = MiCRMParameters(
+            uptake=[[1.0]],
+            mortality=[0.0],
+            resource_supply=[1.0],
+            resource_decay=[1.0],
+            leakage=[[[0.0]]],
+            leakage_fraction=[0.0],
+        )
+
+        def resource_reaches_half(time, state):
+            del time
+            return state[1] - 0.5
+
+        resource_reaches_half.terminal = True
+        result = solve_micrm(
+            parameters,
+            [0.0, 0.0],
+            (0.0, 2.0),
+            events=resource_reaches_half,
+        )
+
+        self.assertTrue(result.success, result.message)
+        self.assertEqual(len(result.t_events[0]), 1)
+        np.testing.assert_allclose(result.t_events[0][0], np.log(2.0), rtol=1e-4)
+
+    def test_solver_preserves_standard_jacobian_callback_signature(self):
+        parameters = MiCRMParameters(
+            uptake=[[1.0]],
+            mortality=[0.0],
+            resource_supply=[1.0],
+            resource_decay=[1.0],
+            leakage=[[[0.0]]],
+            leakage_fraction=[0.0],
+        )
+
+        def jacobian(time, state):
+            del time
+            consumer, resource = state
+            return np.array([[resource, consumer], [-resource, -consumer - 1.0]])
+
+        result = solve_micrm(
+            parameters,
+            [0.1, 0.0],
+            (0.0, 0.1),
+            method="BDF",
+            jac=jacobian,
+        )
+
+        self.assertTrue(result.success, result.message)
+
 
 if __name__ == "__main__":
     unittest.main()

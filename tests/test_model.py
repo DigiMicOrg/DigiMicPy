@@ -83,6 +83,17 @@ class MiCRMParametersTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "row sums"):
             valid_parameters(leakage_fraction=np.array([0.1, 0.1]))
 
+    def test_equality_compares_array_values_without_ambiguity(self):
+        first = valid_parameters()
+        second = valid_parameters()
+
+        self.assertIs(first == second, True)
+        self.assertIs(first == valid_parameters(mortality=[0.1, 0.3]), False)
+
+    def test_parameters_are_explicitly_unhashable(self):
+        with self.assertRaises(TypeError):
+            hash(valid_parameters())
+
 
 if __name__ == "__main__":
     unittest.main()
