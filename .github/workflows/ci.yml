@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python 3.11
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MPLBACKEND: Agg
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,examples]"
+      - name: Run tests
+        run: python -m pytest
+      - name: Run basic example
+        run: python examples/basic_simulation.py
+      - name: Build distributions
+        run: python -m build
+      - name: Verify wheel installation
+        run: |
+          python -m pip uninstall -y DigiMicPy
+          python -m pip install --no-deps dist/*.whl
+          cd "$RUNNER_TEMP"
+          python -c "import digimicpy; print(digimicpy.__file__)"

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -9,7 +9,8 @@ authors = [{name="Yan Zhu", email="yan.zhu@imperial.ac.uk"}]
 description = "Tools for microbial consumer-resource model simulations"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
 	"numpy>=1.23.5",
 	"scipy>=1.9.3",
@@ -30,3 +31,7 @@ Issues = "https://github.com/DigiMicOrg/DigiMicPy/issues"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["digimicpy*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
