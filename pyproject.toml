@@ -1,19 +1,32 @@
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "DigiMicPy"
 version = "0.1.0"
 authors = [{name="Yan Zhu", email="yan.zhu@imperial.ac.uk"}]
-description = "DigiMicPy"
+description = "Tools for microbial consumer-resource model simulations"
 readme = "README.md"
-requires-python = ">=3.8"
-license = {text = "MIT"}
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = [
+	"numpy>=1.23.5",
+	"scipy>=1.9.3",
+]
+
+[project.optional-dependencies]
+examples = ["matplotlib>=3.6"]
+test = ["pytest>=7"]
+dev = ["build>=1", "pytest>=7"]
+docs = ["jupyter-book>=1", "matplotlib>=3.6"]
 
 [project.urls]
-Homepage = "https://github.com/EcoEngLab/DigiMicPy"
-Documentation = "https://ecoenglab.github.io/DigiMicPy"
+Homepage = "https://github.com/DigiMicOrg/DigiMicPy"
+Documentation = "https://digimic.org"
+Repository = "https://github.com/DigiMicOrg/DigiMicPy"
+Issues = "https://github.com/DigiMicOrg/DigiMicPy/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["digimicpy*"]
