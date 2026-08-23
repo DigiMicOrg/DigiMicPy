@@ -18,31 +18,35 @@ The longer-term Digital Microbiome goal is to connect three layers in a single t
 Digital Microbiome workflow: strain-level traits and metabolic modelling parameterise predictive microbiome dynamics, which are then compared with lab and field data.
 ```
 
-## What DigiMic helps you study
+## What DigiMicPy currently implements
 
-DigiMic is intended for exploratory and mechanistic microbiome modelling, especially when the question depends on how species transform shared resources rather than on species interactions alone. Typical uses include:
+DigiMicPy is intended for exploratory and mechanistic microbiome modelling,
+especially when a question depends on how species transform shared resources.
+The tested package API currently supports:
 
 - generating synthetic microbial communities with modular resource preferences;
 - simulating consumer and resource trajectories through time;
 - comparing communities under different leakage, supply, mortality, or resource-loss regimes;
-- studying cross-feeding and metabolic by-product structure;
-- reducing MiCRM dynamics to effective species interactions for interpretation;
-- analysing local stability, reactivity, feasibility, and return rates around equilibria;
-- simulating community coalescence by merging pre-assembled microbiomes;
-- calculating species-level and community-level carbon use efficiency (CUE);
-- adding temperature-dependent uptake, maintenance, leakage, or resource-supply traits.
+- scaling uptake and mortality across fixed temperatures;
+- coupling matching consumers and resources across undirected spatial patches.
 
-## Current implementation
+## Implementation status
 
-The current Python version contains:
+The documentation separates implemented code from mathematical workflows that
+are useful for planning analyses:
 
-- `src/param.py`: utilities for modular uptake matrices and leakage tensors;
-- `src/micrm.py`: a complete minimal MiCRM simulation script;
-- `docs/content/*.ipynb`: executable documentation pages used to generate this website;
-- `docs/content/*.md`: theory and usage notes for extensions that are being added to the package;
-- `docs/content/figures/`: conceptual figures for the modelling framework and workflow.
+| Area | Status |
+|---|---|
+| Core MiCRM parameters, RHS, and solver | Implemented and tested |
+| Modular uptake and leakage generators | Implemented and tested |
+| Fixed-temperature uptake/mortality scaling | Implemented and tested |
+| Conservative undirected spatial patches | Implemented and tested |
+| Coalescence, CUE, resource-flux summaries | Documented manual workflows |
+| Effective GLV conversion and stability helpers | Theory only; package API planned |
 
-The documentation is organised into basic theory, technical details, a runnable basic usage example, advanced usage notes, analysis pages, support information, and contact details.
+Start with {doc}`useinfo` for an executable package example and {doc}`api` for
+the supported public interface. Advanced and analysis pages state explicitly
+when their calculations are pseudocode or manual NumPy workflows.
 
 
 ## Development and community contribution

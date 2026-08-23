@@ -94,3 +94,32 @@ If the largest eigenvalue of $H$ is positive, some perturbation directions grow 
 3. Compute the leading real eigenvalue.
 4. Compute reactivity if transient amplification matters.
 5. Repeat across parameter scenarios, coalescence pairs, or temperature regimes.
+
+The package exposes `micrm_rhs`, so a central finite-difference Jacobian can be
+calculated without duplicating the model equations:
+
+```python
+import numpy as np
+from digimicpy import micrm_rhs
+
+def numerical_jacobian(parameters, state, step=1e-6):
+    state = np.asarray(state, dtype=float)
+    jacobian = np.empty((state.size, state.size))
+    for column in range(state.size):
+        offset = np.zeros_like(state)
+        offset[column] = step
+        jacobian[:, column] = (
+            micrm_rhs(0.0, state + offset, parameters)
+            - micrm_rhs(0.0, state - offset, parameters)
+        ) / (2.0 * step)
+    return jacobian
+
+state_equilibrium = result.y[:, -1]
+J = numerical_jacobian(parameters, state_equilibrium)
+eigenvalues = np.linalg.eigvals(J)
+leading_real_part = np.max(eigenvalues.real)
+```
+
+Finite differences are a manual analysis technique, not a current
+`digimicpy` helper. Confirm the derivative norm is small before interpreting
+the endpoint as a fixed point.

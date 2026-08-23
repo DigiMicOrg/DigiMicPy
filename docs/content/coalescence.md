@@ -118,21 +118,36 @@ After integrating the merged MiCRM to equilibrium, calculate:
 | Stability | Leading real eigenvalue of the MiCRM or effective GLV Jacobian |
 | Feasibility | Whether all surviving species have positive equilibrium biomass |
 
-The basic simulation workflow is:
+The package-based simulation workflow below assumes both parents share the same
+ordered resource set, supply, and decay parameters:
 
 ```python
 # 1. Assemble two parental communities
-sol1 = solve_micrm(params1)
-sol2 = solve_micrm(params2)
+result1 = solve_micrm(params1, initial_state1, (0.0, 100.0))
+result2 = solve_micrm(params2, initial_state2, (0.0, 100.0))
+if not result1.success or not result2.success:
+    raise RuntimeError("A parental simulation failed")
 
-# 2. Build the merged parameter set
-u3 = np.vstack([u1, u2])
-l3 = np.vstack([l1, l2])
-m3 = np.concatenate([m1, m2])
-C0_3 = np.concatenate([C1_eq, C2_eq])
+C1_eq = result1.y[:params1.n_consumers, -1]
+C2_eq = result2.y[:params2.n_consumers, -1]
 
-# 3. Integrate the coalesced community
-sol3 = solve_micrm(u3, l3, m3, C0_3, R0_mix)
+# 2. Stack consumer-specific parameters in the common resource space
+params3 = MiCRMParameters(
+    uptake=np.vstack([params1.uptake, params2.uptake]),
+    mortality=np.concatenate([params1.mortality, params2.mortality]),
+    resource_supply=params1.resource_supply,
+    resource_decay=params1.resource_decay,
+    leakage=np.concatenate([params1.leakage, params2.leakage], axis=0),
+    leakage_fraction=np.concatenate(
+        [params1.leakage_fraction, params2.leakage_fraction], axis=0
+    ),
+)
+
+# 3. Integrate consumers together from an explicitly chosen resource state
+initial_state3 = np.concatenate([C1_eq, C2_eq, R0_mix])
+result3 = solve_micrm(params3, initial_state3, (0.0, 100.0))
+if not result3.success:
+    raise RuntimeError(result3.message)
 
 # 4. Measure dominance, survivors, resources, stability, and CUE
 ```
@@ -140,4 +155,3 @@ sol3 = solve_micrm(u3, l3, m3, C0_3, R0_mix)
 ## Interpretation
 
 Coalescence is not only a species-mixing experiment. It is also a test of whether two resource-processing systems can coexist. Communities with very similar uptake profiles tend to compete strongly. Communities with complementary uptake and leakage can create stabilising cross-feeding if the by-products of one group match the demands of another.
-

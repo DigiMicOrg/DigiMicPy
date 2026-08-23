@@ -112,6 +112,11 @@ This simple expression is useful for intuition. In MiCRM, leakage and resource r
 
 ## Computational workflow
 
+```{important}
+DigiMicPy does not yet implement automatic MiCRM-to-eGLV conversion. The steps
+below describe a manual calculation from an equilibrium and its Jacobian blocks.
+```
+
 1. Simulate MiCRM until the derivative norm is small.
 2. Extract equilibrium biomasses $\hat C$ and resources $\hat R$.
 3. Build the resource Jacobian $\partial F/\partial R$.
@@ -122,7 +127,7 @@ This simple expression is useful for intuition. In MiCRM, leakage and resource r
 8. Compare MiCRM and eGLV trajectories after a small perturbation.
 
 ```python
-alpha, r = calculate_elv_params(C_eq, R_eq, N, M, u, l, m, rho, omega, lambda_vec)
+# After calculating alpha and r from the Jacobian blocks above:
 
 def dCdt_elv(t, C):
     return C * (r + alpha @ C)
@@ -138,5 +143,4 @@ The rows of $\alpha$ are affected species. The columns are the species causing t
 | $\alpha_{ij}>0$ and $\alpha_{ji}>0$ | Net mutual facilitation |
 | Opposite signs | Exploitation-like or asymmetric facilitation |
 | Weak off-diagonal values | Weak apparent coupling through resources |
-
 
