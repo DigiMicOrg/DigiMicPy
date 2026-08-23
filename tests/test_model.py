@@ -72,6 +72,7 @@ class MiCRMParametersTests(unittest.TestCase):
             {"resource_supply": np.array([np.inf, 0.5])},
             {"leakage_fraction": np.array([1.1, 0.2])},
             {"leakage": np.full((2, 2, 2), -0.1)},
+            {"uptake": np.array([[1.0 + 2.0j, 0.0], [0.0, 1.0]])},
         )
 
         for override in invalid_overrides:

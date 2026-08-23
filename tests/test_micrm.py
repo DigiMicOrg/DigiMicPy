@@ -47,7 +47,12 @@ class MiCRMDynamicsTests(unittest.TestCase):
             leakage_fraction=[0.0],
         )
 
-        for state in ([1.0], [[1.0, 1.0]], [1.0, np.nan]):
+        for state in (
+            [1.0],
+            [[1.0, 1.0]],
+            [1.0, np.nan],
+            np.array([1.0 + 2.0j, 1.0]),
+        ):
             with self.subTest(state=state):
                 with self.assertRaises(ValueError):
                     micrm_rhs(0.0, state, parameters)
