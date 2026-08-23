@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Hashable, Iterable
 from dataclasses import dataclass
 
 import numpy as np
@@ -34,6 +35,30 @@ def _freeze(array: FloatArray) -> FloatArray:
     return array
 
 
+def _identifiers(
+    name: str,
+    values: Iterable[Hashable] | None,
+    size: int,
+) -> tuple[Hashable, ...] | None:
+    if values is None:
+        return None
+    if isinstance(values, (str, bytes)):
+        raise ValueError(f"{name} must be a sequence of individual identifiers")
+    try:
+        identifiers = tuple(values)
+    except TypeError as error:
+        raise ValueError(f"{name} must be an iterable of hashable values") from error
+    if len(identifiers) != size:
+        raise ValueError(f"{name} must contain {size} values, got {len(identifiers)}")
+    try:
+        unique_identifiers = set(identifiers)
+    except TypeError as error:
+        raise ValueError(f"{name} must contain only hashable values") from error
+    if len(unique_identifiers) != size:
+        raise ValueError(f"{name} must contain unique values")
+    return identifiers
+
+
 @dataclass(frozen=True, slots=True, init=False, eq=False)
 class MiCRMParameters:
     """Validated parameters for a microbial consumer-resource model."""
@@ -46,6 +71,8 @@ class MiCRMParameters:
     resource_decay: FloatArray
     leakage: FloatArray
     leakage_fraction: FloatArray
+    consumer_ids: tuple[Hashable, ...] | None
+    resource_ids: tuple[Hashable, ...] | None
 
     def __init__(
         self,
@@ -55,6 +82,9 @@ class MiCRMParameters:
         resource_decay: ArrayLike,
         leakage: ArrayLike,
         leakage_fraction: ArrayLike,
+        *,
+        consumer_ids: Iterable[Hashable] | None = None,
+        resource_ids: Iterable[Hashable] | None = None,
     ) -> None:
         uptake_array = _float_array("uptake", uptake)
         if uptake_array.ndim != 2:
@@ -106,12 +136,25 @@ class MiCRMParameters:
         ):
             raise ValueError("leakage row sums must match leakage_fraction")
 
+        validated_consumer_ids = _identifiers(
+            "consumer_ids",
+            consumer_ids,
+            n_consumers,
+        )
+        validated_resource_ids = _identifiers(
+            "resource_ids",
+            resource_ids,
+            n_resources,
+        )
+
         object.__setattr__(self, "uptake", _freeze(uptake_array))
         object.__setattr__(self, "mortality", _freeze(mortality_array))
         object.__setattr__(self, "resource_supply", _freeze(supply_array))
         object.__setattr__(self, "resource_decay", _freeze(decay_array))
         object.__setattr__(self, "leakage", _freeze(leakage_array))
         object.__setattr__(self, "leakage_fraction", _freeze(fraction_array))
+        object.__setattr__(self, "consumer_ids", validated_consumer_ids)
+        object.__setattr__(self, "resource_ids", validated_resource_ids)
 
     @property
     def n_consumers(self) -> int:
@@ -128,24 +171,28 @@ class MiCRMParameters:
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, MiCRMParameters):
             return NotImplemented
-        return all(
-            np.array_equal(left, right)
-            for left, right in zip(
-                (
-                    self.uptake,
-                    self.mortality,
-                    self.resource_supply,
-                    self.resource_decay,
-                    self.leakage,
-                    self.leakage_fraction,
-                ),
-                (
-                    other.uptake,
-                    other.mortality,
-                    other.resource_supply,
-                    other.resource_decay,
-                    other.leakage,
-                    other.leakage_fraction,
-                ),
+        return (
+            self.consumer_ids == other.consumer_ids
+            and self.resource_ids == other.resource_ids
+            and all(
+                np.array_equal(left, right)
+                for left, right in zip(
+                    (
+                        self.uptake,
+                        self.mortality,
+                        self.resource_supply,
+                        self.resource_decay,
+                        self.leakage,
+                        self.leakage_fraction,
+                    ),
+                    (
+                        other.uptake,
+                        other.mortality,
+                        other.resource_supply,
+                        other.resource_decay,
+                        other.leakage,
+                        other.leakage_fraction,
+                    ),
+                )
             )
         )

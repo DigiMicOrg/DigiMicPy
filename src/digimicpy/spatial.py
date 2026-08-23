@@ -111,6 +111,27 @@ def _diffusion_vector(name: str, diffusion: ArrayLike, size: int) -> FloatArray:
     return vector
 
 
+def _require_matching_transport_ids(
+    parameters: tuple[MiCRMParameters, ...],
+    name: str,
+    diffusion: FloatArray,
+) -> None:
+    if not np.any(diffusion > 0.0):
+        return
+    expected = getattr(parameters[0], name)
+    if expected is None:
+        raise ValueError(
+            f"{name} must be provided for every patch when its variables diffuse"
+        )
+    for index, item in enumerate(parameters[1:], start=1):
+        identifiers = getattr(item, name)
+        if identifiers != expected:
+            raise ValueError(
+                f"all patches must use identical ordered {name}; "
+                f"patch {index} does not match patch 0"
+            )
+
+
 def _state_array(
     state: ArrayLike,
     n_patches: int,
@@ -187,6 +208,8 @@ def _validated_inputs(
         resource_diffusion,
         parameters[0].n_resources,
     )
+    _require_matching_transport_ids(parameters, "consumer_ids", consumer_rates)
+    _require_matching_transport_ids(parameters, "resource_ids", resource_rates)
     return parameters, matrix, consumer_rates, resource_rates
 
 
@@ -201,9 +224,10 @@ def spatial_micrm_rhs(
 ) -> FloatArray:
     """Evaluate MiCRM dynamics plus conservative transport between patches.
 
-    Every patch must represent the same indexed consumer and resource types.
-    Patch parameters may otherwise differ. State blocks are ordered by patch,
-    with consumers followed by resources inside each block.
+    Every transported consumer or resource type must have explicit identifiers,
+    in the same order in every patch. Patch parameters may otherwise differ.
+    State blocks are ordered by patch, with consumers followed by resources
+    inside each block.
     """
 
     parameters, matrix, consumer_rates, resource_rates = _validated_inputs(

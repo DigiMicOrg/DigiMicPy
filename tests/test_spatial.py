@@ -10,7 +10,23 @@ from digimicpy.spatial import (
 )
 
 
-def inert_parameters(n_consumers=1, n_resources=1) -> MiCRMParameters:
+def inert_parameters(
+    n_consumers=1,
+    n_resources=1,
+    *,
+    labeled=True,
+    label_prefix="",
+) -> MiCRMParameters:
+    identifiers = {}
+    if labeled:
+        identifiers = {
+            "consumer_ids": tuple(
+                f"{label_prefix}consumer-{index}" for index in range(n_consumers)
+            ),
+            "resource_ids": tuple(
+                f"{label_prefix}resource-{index}" for index in range(n_resources)
+            ),
+        }
     return MiCRMParameters(
         uptake=np.zeros((n_consumers, n_resources)),
         mortality=np.zeros(n_consumers),
@@ -18,6 +34,7 @@ def inert_parameters(n_consumers=1, n_resources=1) -> MiCRMParameters:
         resource_decay=np.zeros(n_resources),
         leakage=np.zeros((n_consumers, n_resources, n_resources)),
         leakage_fraction=np.zeros(n_resources),
+        **identifiers,
     )
 
 
@@ -83,6 +100,29 @@ class SpatialMiCRMTests(unittest.TestCase):
         )
 
         np.testing.assert_allclose(derivative, np.zeros(4))
+
+    def test_transport_requires_matching_explicit_identities(self):
+        calls = (
+            lambda: spatial_micrm_rhs(
+                0.0,
+                [[1.0, 2.0], [3.0, 6.0]],
+                [inert_parameters(labeled=False), inert_parameters(labeled=False)],
+                [[0.0, 1.0], [1.0, 0.0]],
+                consumer_diffusion=0.5,
+            ),
+            lambda: spatial_micrm_rhs(
+                0.0,
+                [[1.0, 2.0], [3.0, 6.0]],
+                [inert_parameters(), inert_parameters(label_prefix="other-")],
+                [[0.0, 1.0], [1.0, 0.0]],
+                resource_diffusion=0.25,
+            ),
+        )
+
+        for call in calls:
+            with self.subTest(call=call):
+                with self.assertRaisesRegex(ValueError, "_ids"):
+                    call()
 
     def test_tolerated_connectivity_roundoff_is_symmetrized(self):
         derivative = spatial_micrm_rhs(

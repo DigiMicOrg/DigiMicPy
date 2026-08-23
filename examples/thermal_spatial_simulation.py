@@ -23,6 +23,8 @@ def build_reference_parameters() -> MiCRMParameters:
             [[0.05, 0.05], [0.02, 0.08]],
         ],
         leakage_fraction=[0.1, 0.1],
+        consumer_ids=["consumer-1", "consumer-2"],
+        resource_ids=["resource-1", "resource-2"],
     )
 
 

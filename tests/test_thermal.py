@@ -21,6 +21,8 @@ def base_parameters() -> MiCRMParameters:
             [[0.1, 0.1], [0.04, 0.16]],
         ],
         leakage_fraction=[0.2, 0.2],
+        consumer_ids=["consumer-a", "consumer-b"],
+        resource_ids=["resource-a", "resource-b"],
     )
 
 
@@ -134,6 +136,8 @@ class ThermalPerformanceTests(unittest.TestCase):
         np.testing.assert_allclose(adjusted.resource_supply, parameters.resource_supply)
         np.testing.assert_allclose(adjusted.resource_decay, parameters.resource_decay)
         np.testing.assert_allclose(adjusted.leakage, parameters.leakage)
+        self.assertEqual(adjusted.consumer_ids, parameters.consumer_ids)
+        self.assertEqual(adjusted.resource_ids, parameters.resource_ids)
 
     def test_invalid_thermal_inputs_are_rejected(self):
         invalid_calls = (
