@@ -39,6 +39,22 @@ class MiCRMParametersTests(unittest.TestCase):
 
         np.testing.assert_allclose(parameters.leakage_fraction, leakage_fraction)
 
+    def test_optional_identifiers_are_validated_and_compared(self):
+        parameters = valid_parameters(
+            consumer_ids=["consumer-a", "consumer-b"],
+            resource_ids=["resource-a", "resource-b"],
+        )
+
+        self.assertEqual(parameters.consumer_ids, ("consumer-a", "consumer-b"))
+        self.assertEqual(parameters.resource_ids, ("resource-a", "resource-b"))
+        self.assertNotEqual(
+            parameters,
+            valid_parameters(
+                consumer_ids=["consumer-b", "consumer-a"],
+                resource_ids=["resource-a", "resource-b"],
+            ),
+        )
+
     def test_inputs_are_converted_to_float_arrays(self):
         parameters = valid_parameters(
             mortality=[1, 2],
@@ -58,6 +74,9 @@ class MiCRMParametersTests(unittest.TestCase):
             {"resource_decay": np.ones(3)},
             {"leakage": np.ones((2, 2, 3))},
             {"leakage_fraction": np.ones((2, 2, 1))},
+            {"consumer_ids": ["consumer-a"]},
+            {"resource_ids": ["resource-a", "resource-a"]},
+            {"consumer_ids": [["unhashable"], ["values"]]},
         )
 
         for override in invalid_overrides:

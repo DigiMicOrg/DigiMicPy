@@ -249,4 +249,6 @@ def temperature_adjusted_parameters(
         resource_decay=parameters.resource_decay,
         leakage=parameters.leakage,
         leakage_fraction=parameters.leakage_fraction,
+        consumer_ids=parameters.consumer_ids,
+        resource_ids=parameters.resource_ids,
     )
