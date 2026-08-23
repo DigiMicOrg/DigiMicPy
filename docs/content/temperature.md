@@ -71,6 +71,8 @@ temperatures[np.argmax(rates)] - 273.15
 `temperature_adjusted_parameters` scales each uptake row and mortality entry by
 $B(T)/B(T_{\mathrm{ref}})$. This makes the supplied parameter object exactly the
 reference-temperature model, independent of the interpretation of $B_0$.
+Consumer and resource identifiers are preserved unchanged, so adjusted copies
+can be coupled safely as spatial patches.
 
 ```{code-cell} ipython3
 import numpy as np
@@ -86,6 +88,8 @@ reference = MiCRMParameters(
         [[0.05, 0.05], [0.02, 0.08]],
     ],
     leakage_fraction=[0.1, 0.1],
+    consumer_ids=["consumer-1", "consumer-2"],
+    resource_ids=["resource-1", "resource-2"],
 )
 
 warm = temperature_adjusted_parameters(

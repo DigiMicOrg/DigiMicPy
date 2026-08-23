@@ -8,7 +8,7 @@ docstrings.
 
 | Symbol | Purpose |
 |---|---|
-| `MiCRMParameters(...)` | Validate and store one consumer-resource parameter set |
+| `MiCRMParameters(...)` | Validate and store one parameter set, with optional consumer/resource IDs |
 | `micrm_rhs(time, state, parameters)` | Evaluate the autonomous MiCRM derivative |
 | `solve_micrm(parameters, initial_state, t_span, **options)` | Integrate one MiCRM system with SciPy |
 
@@ -43,5 +43,6 @@ and deactivation energies are in electronvolts and temperature is in kelvin.
 | `spatial_micrm_rhs(...)` | Evaluate local dynamics plus conservative transport |
 | `solve_spatial_micrm(...)` | Integrate a fixed network of MiCRM patches |
 
-The spatial API requires shared consumer/resource identities and dimensions,
-undirected connectivity, and diffusion coefficients shared across patches.
+The spatial API requires explicit, identical ordered IDs for every transported
+consumer or resource, shared dimensions, undirected connectivity, and diffusion
+coefficients shared across patches.

@@ -19,8 +19,10 @@ acts between matching state variables.
 
 The current implementation deliberately requires:
 
-- the same number and ordering of consumer identities in every patch;
-- the same number and ordering of resource identities in every patch;
+- explicit `consumer_ids` with the same values and order in every patch when
+  consumers diffuse;
+- explicit `resource_ids` with the same values and order in every patch when
+  resources diffuse;
 - nonnegative, symmetric connectivity with a zero diagonal;
 - consumer and resource diffusion coefficients shared across patches;
 - equal-volume patches when states are concentrations, or states interpreted as
@@ -67,24 +69,10 @@ scalar or a vector with one coefficient per consumer or resource.
 
 ## Fixed-temperature landscape example
 
-The same reference community can be evaluated at different fixed patch
-temperatures and then coupled:
-
-```python
-patch_parameters = [
-    temperature_adjusted_parameters(reference, 288.15, 283.15, **traits),
-    temperature_adjusted_parameters(reference, 298.15, 283.15, **traits),
-]
-result = solve_spatial_micrm(
-    patch_parameters,
-    initial_state,
-    (0.0, 20.0),
-    connectivity=connectivity,
-    consumer_diffusion=0.01,
-    resource_diffusion=0.05,
-)
-```
-
-See the
+The same labeled reference community can be evaluated at different fixed patch
+temperatures and then coupled. Thermal adjustment preserves its consumer and
+resource identifiers, allowing the spatial solver to validate that migration
+and diffusion connect the same variables in every patch. See the
 [`thermal_spatial_simulation.py` example](https://github.com/DigiMicOrg/DigiMicPy/blob/main/examples/thermal_spatial_simulation.py)
-for a complete, tested program.
+for the complete, tested setup, including identifiers, thermal traits, initial
+states, and solver options.

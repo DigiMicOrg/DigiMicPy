@@ -32,11 +32,14 @@ this consumer-then-resource block for every patch.
 | `resource_supply` | `(M,)` | finite and nonnegative |
 | `resource_decay` | `(M,)` | finite and nonnegative |
 | `leakage` | `(N, M, M)` | finite, nonnegative, and row-normalised |
-| `leakage_fraction` | `(M,)` or `(N, M)` | between zero and one |
+| `leakage_fraction` | stored as `(N, M)` | between zero and one; `(M,)` inputs are broadcast |
+| `consumer_ids` | optional `(N,)` | unique and hashable |
+| `resource_ids` | optional `(M,)` | unique and hashable |
 
-A resource-vector leakage fraction is broadcast across consumers. Inputs are
-copied into floating-point arrays and exposed read-only so later mutation of an
-input array cannot silently change a model.
+A resource-vector leakage fraction is broadcast across consumers. Numeric inputs
+are copied into floating-point arrays and exposed read-only so later mutation of
+an input array cannot silently change a model. Identifiers are stored as tuples;
+spatial transport requires them for the variables that diffuse.
 
 ## Reproducible parameter generation
 

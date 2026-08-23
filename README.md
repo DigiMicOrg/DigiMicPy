@@ -113,16 +113,19 @@ For `N` consumers and `M` resources:
 | `resource_supply` | `(M,)` | External resource input rates |
 | `resource_decay` | `(M,)` | Resource loss or washout rates |
 | `leakage` | `(N, M, M)` | Consumed-resource to by-product fractions |
-| `leakage_fraction` | `(M,)` or `(N, M)` | Total leaked fraction for each uptake channel |
+| `leakage_fraction` | stored as `(N, M)` | Total leaked fraction for each uptake channel; `(M,)` inputs are broadcast |
+| `consumer_ids` | optional `(N,)` | Unique consumer labels, required for consumer diffusion |
+| `resource_ids` | optional `(M,)` | Unique resource labels, required for resource diffusion |
 
 Every leakage row must sum to the corresponding `leakage_fraction`, and all
 model parameters and initial states must be finite and nonnegative.
 
-Spatial simulations additionally assume that every patch uses the same indexed
-consumer and resource identities. Connectivity must be undirected. Diffusion
-rates are common across patches but may differ by consumer or resource. The
-transport equations conserve each state variable for equal-volume patches (or
-when states represent total quantities rather than concentrations).
+Spatial simulations require explicit identifiers for every transported consumer
+or resource, with identical ordered identifiers in every patch. Connectivity
+must be undirected. Diffusion rates are common across patches but may differ by
+consumer or resource. The transport equations conserve each state variable for
+equal-volume patches (or when states represent total quantities rather than
+concentrations).
 
 ## Public API
 

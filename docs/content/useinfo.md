@@ -83,7 +83,10 @@ result.success, result.message
 ## 3. Plot trajectories
 
 ```{code-cell} ipython3
+from io import BytesIO
+
 import matplotlib.pyplot as plt
+from IPython.display import Image, display
 
 fig, ax = plt.subplots(figsize=(10, 5))
 for index in range(parameters.n_consumers):
@@ -99,6 +102,10 @@ for index in range(parameters.n_resources):
 ax.set(xlabel="Time", ylabel="Abundance", title="MiCRM dynamics")
 ax.legend(ncol=3, fontsize=8)
 fig.tight_layout()
+image_buffer = BytesIO()
+fig.savefig(image_buffer, format="png", bbox_inches="tight")
+plt.close(fig)
+display(Image(data=image_buffer.getvalue()))
 ```
 
 ## 4. Check the final state
