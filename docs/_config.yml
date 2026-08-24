@@ -1,17 +1,18 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: DigiMic
+title: DigiMicPy
 copyright: "2026, DigiMic Collective"
 logo: logo.png
 
-exclude_patterns:
-  - content/analysisinfo.ipynb
+only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 120
+  allow_errors: false
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -33,6 +34,11 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+  config:
+    html_extra_path:
+      - redirects
 
 
 parse:

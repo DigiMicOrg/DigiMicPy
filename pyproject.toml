@@ -20,7 +20,7 @@ dependencies = [
 examples = ["matplotlib>=3.6"]
 test = ["pytest>=7"]
 dev = ["build>=1", "pytest>=7"]
-docs = ["jupyter-book>=1", "matplotlib>=3.6"]
+docs = ["jupyter-book>=1,<2", "matplotlib>=3.6"]
 
 [project.urls]
 Homepage = "https://github.com/DigiMicOrg/DigiMicPy"
