@@ -1,30 +1,32 @@
-# Analysis
+# Simulation diagnostics
 
-This section focuses on model interpretation after a MiCRM simulation has been run. The main tasks are to reduce MiCRM to an effective species-interaction model and to analyse stability at both the consumer-resource and species-only levels.
+DigiMicPy returns SciPy solver results and exposes the pure `micrm_rhs`
+right-hand side. These interfaces support endpoint checks, perturbation
+experiments, and numerical differentiation without a separate analysis API.
 
-```{important}
-The current package exposes trajectories and the pure MiCRM derivative needed
-for these calculations, but it does not yet provide eGLV conversion, Jacobian,
-stability, reactivity, or feasibility helper functions. The pages in this
-section are mathematical and manual-computation guidance.
-```
+## Check an endpoint
 
-The recommended order is:
-
-1. Simulate MiCRM and confirm the system has reached a numerical equilibrium.
-2. Convert the equilibrium to an effective GLV model if species-level interactions are needed.
-3. Analyse full MiCRM stability using the consumer-resource Jacobian.
-4. Analyse effective GLV stability using the surviving species interaction matrix.
-
-## Perturbation experiments
-
-A direct resilience experiment can reuse the final state as a new initial
-condition, modify selected entries, and integrate again:
+The final recorded time is not automatically an equilibrium. Calculate the
+derivative at the endpoint and compare its largest absolute value with a
+tolerance appropriate to the model units:
 
 ```python
-perturbed = result.y[:, -1].copy()
-perturbed[0] *= 0.5  # reduce the first consumer
-perturbed[parameters.n_consumers] += 0.5  # pulse the first resource
+import numpy as np
+from digimicpy import micrm_rhs
+
+state = result.y[:, -1]
+residual = np.max(np.abs(micrm_rhs(result.t[-1], state, parameters)))
+```
+
+Also inspect `result.success`, `result.message`, minimum state values, and
+sensitivity to the integration interval and solver tolerances.
+
+## Perturb and reintegrate
+
+```python
+perturbed = state.copy()
+perturbed[0] *= 0.5
+perturbed[parameters.n_consumers] += 0.5
 
 post = solve_micrm(
     parameters,
@@ -32,8 +34,17 @@ post = solve_micrm(
     (0.0, 25.0),
     t_eval=np.linspace(0.0, 25.0, 150),
 )
+if not post.success:
+    raise RuntimeError(post.message)
 ```
 
-Compare recovery time or distance from the pre-perturbation state only after
-checking both solver results and confirming that the reference endpoint was
-close to equilibrium.
+Compare recovery only after confirming that the reference endpoint was close
+to equilibrium.
+
+## Stability calculations
+
+{doc}`micrm_stability` shows a package-specific finite-difference recipe using
+`micrm_rhs`. DigiMicPy does not currently provide Jacobian, effective GLV,
+stability, reactivity, or feasibility helpers. The scientific definitions and
+reporting guidance are maintained in the
+[platform stability workflow](https://digimic.org/workflows/stability/).

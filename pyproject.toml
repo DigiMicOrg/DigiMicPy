@@ -24,7 +24,8 @@ docs = ["jupyter-book>=1,<2", "matplotlib>=3.6"]
 
 [project.urls]
 Homepage = "https://github.com/DigiMicOrg/DigiMicPy"
-Documentation = "https://digimic.org"
+Documentation = "https://digimic.org/DigiMicPy/"
+Platform = "https://digimic.org/"
 Repository = "https://github.com/DigiMicOrg/DigiMicPy"
 Issues = "https://github.com/DigiMicOrg/DigiMicPy/issues"
 
