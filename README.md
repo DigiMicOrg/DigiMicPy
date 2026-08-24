@@ -8,9 +8,8 @@ reproducible modular parameter generators, fixed-temperature trait scaling,
 and conservative coupling between spatial patches.
 
 > **Project status:** DigiMicPy is an early, source-distributed release. The
-> functions listed below are implemented and tested. The documentation also
-> contains theory for planned analysis workflows; those pages are explicitly
-> marked when no package helper exists yet.
+> functions listed below are implemented and tested. Explicit NumPy recipes are
+> labelled separately from supported package helpers.
 
 ## Implemented features
 
@@ -142,9 +141,11 @@ the public API.
 
 ## Documentation
 
-The project documentation is available at [digimic.org](https://digimic.org).
-It includes the core theory, executable usage, temperature and spatial
-assumptions, and clearly marked theory-only analysis workflows.
+The [DigiMicPy package documentation](https://digimic.org/DigiMicPy/) covers
+installation, the implemented model and API, executable examples, and
+Python-specific recipes. The [DigiMic platform site](https://digimic.org/)
+owns the project overview, shared scientific workflows, training directory,
+team, funding, and contact information.
 
 ## Development
 

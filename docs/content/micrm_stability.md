@@ -1,125 +1,43 @@
-# MiCRM stability analysis
+# Numerical Jacobian recipe
 
-MiCRM stability analysis uses the full consumer-resource Jacobian. It asks whether a small perturbation in either species biomass or resource abundance will decay back to the equilibrium.
-
-## Fixed point
-
-Let the equilibrium be:
-
-$$
-x^* =
-\begin{bmatrix}
-C^* \\
-R^*
-\end{bmatrix}.
-$$
-
-Before computing stability, check that the derivative is small:
-
-$$
-\max_k \left|\frac{dx_k}{dt}\right| < \epsilon.
-$$
-
-A typical tolerance is `1e-5`.
-
-## Full Jacobian
-
-With retained fraction:
-
-$$
-\eta_{i\alpha}=1-\sum_\beta l_{i\alpha\beta},
-$$
-
-the MiCRM Jacobian has four blocks:
-
-$$
-J =
-\begin{bmatrix}
-J_{CC} & J_{CR} \\
-J_{RC} & J_{RR}
-\end{bmatrix}.
-$$
-
-For consumer rows:
-
-$$
-(J_{CC})_{ij}
-= \delta_{ij}\left(\sum_\alpha u_{i\alpha}\eta_{i\alpha}R_\alpha^* - m_i\right),
-$$
-
-$$
-(J_{CR})_{i\alpha}
-= C_i^* u_{i\alpha}\eta_{i\alpha}.
-$$
-
-For resource rows with leaching-style abiotic loss $-\omega_\alpha R_\alpha$:
-
-$$
-(J_{RC})_{\alpha i}
-= -u_{i\alpha}R_\alpha^*
-+ \sum_\beta u_{i\beta}R_\beta^*l_{i\beta\alpha},
-$$
-
-$$
-(J_{RR})_{\alpha\gamma}
-= -\omega_\alpha\delta_{\alpha\gamma}
-- \sum_i C_i^*u_{i\alpha}\delta_{\alpha\gamma}
-+ \sum_i C_i^*u_{i\gamma}l_{i\gamma\alpha}.
-$$
-
-If the resource supply model is constant, chemostat, or self-renewing, replace the first term in $J_{RR}$ with the corresponding derivative of the resource supply function.
-
-## Local stability and reactivity
-
-Compute the eigenvalues of $J$. The equilibrium is locally stable when:
-
-$$
-\max_k \mathrm{Re}(\lambda_k(J)) < 0.
-$$
-
-The leading real eigenvalue gives a continuous stability metric. More negative values indicate faster local recovery, while values close to zero indicate slow return.
-
-A stable system can still amplify perturbations transiently. Reactivity is measured from:
-
-$$
-H = \frac{J+J^T}{2}.
-$$
-
-If the largest eigenvalue of $H$ is positive, some perturbation directions grow initially even if the equilibrium is asymptotically stable.
-
-## Workflow
-
-1. Integrate MiCRM to equilibrium.
-2. Build the full consumer-resource Jacobian.
-3. Compute the leading real eigenvalue.
-4. Compute reactivity if transient amplification matters.
-5. Repeat across parameter scenarios, coalescence pairs, or temperature regimes.
-
-The package exposes `micrm_rhs`, so a central finite-difference Jacobian can be
-calculated without duplicating the model equations:
+The [platform stability workflow](https://digimic.org/workflows/stability/)
+defines equilibrium checks, local stability, reactivity, feasibility, and
+reporting requirements. DigiMicPy has no public Jacobian or stability helper,
+but its pure `micrm_rhs` can be differentiated numerically.
 
 ```python
 import numpy as np
+
 from digimicpy import micrm_rhs
 
-def numerical_jacobian(parameters, state, step=1e-6):
+
+def numerical_jacobian(parameters, state, relative_step=1e-6):
     state = np.asarray(state, dtype=float)
     jacobian = np.empty((state.size, state.size))
-    for column in range(state.size):
+    steps = relative_step * np.maximum(1.0, np.abs(state))
+
+    for column, step in enumerate(steps):
         offset = np.zeros_like(state)
         offset[column] = step
         jacobian[:, column] = (
             micrm_rhs(0.0, state + offset, parameters)
             - micrm_rhs(0.0, state - offset, parameters)
         ) / (2.0 * step)
+
     return jacobian
 
+
 state_equilibrium = result.y[:, -1]
+residual = np.max(
+    np.abs(micrm_rhs(result.t[-1], state_equilibrium, parameters))
+)
 J = numerical_jacobian(parameters, state_equilibrium)
 eigenvalues = np.linalg.eigvals(J)
 leading_real_part = np.max(eigenvalues.real)
+reactivity = np.max(np.linalg.eigvalsh((J + J.T) / 2.0))
 ```
 
-Finite differences are a manual analysis technique, not a current
-`digimicpy` helper. Confirm the derivative norm is small before interpreting
-the endpoint as a fixed point.
+Confirm that `residual` is sufficiently small before interpreting the spectrum.
+Repeat with smaller and larger finite-difference steps, and report the step rule,
+solver tolerances, endpoint residual, and state variables retained in the
+Jacobian.

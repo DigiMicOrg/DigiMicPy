@@ -1,4 +1,9 @@
-# Basic theory
+# Implemented model formulation
+
+This page records the equations implemented by DigiMicPy and maps their symbols
+to the public parameter object. For platform-level motivation and shared
+scientific workflows, see the [DigiMic project overview](https://digimic.org/about/)
+and [workflow documentation](https://digimic.org/workflows/).
 
 ```{figure} figures/MiCRM.png
 :name: micrm-framework
@@ -7,14 +12,6 @@
 
 Microbial Consumer-Resource Model framework.
 ```
-
-## Why consumer-resource dynamics?
-
-Many microbiome models describe interactions directly at the species level:
-species $i$ helps or inhibits species $j$. DigiMic starts one mechanistic layer
-earlier. Species interact because they consume, transform, and release resources.
-This is useful when community behaviour depends on metabolic overlap, by-product
-production, environmental supply, or cross-feeding.
 
 ## Microbial Consumer-Resource Model
 
@@ -69,19 +66,6 @@ The main controls are:
 | `total_leakage` | Fraction of consumed material allocated to leaked resources |
 | `rng` | Explicit `numpy.random.Generator` controlling reproducibility |
 
-## Effective Lotka-Volterra interpretation
-
-Near a fixed environment or equilibrium, MiCRM dynamics can be summarised as an
-effective generalized Lotka-Volterra model:
-
-$$
-\frac{dC_i}{dt}=C_i\left(r_i+\sum_j\alpha_{ij}C_j\right).
-$$
-
-Here $\alpha_{ij}$ represents a local, resource-mediated effect rather than an
-interaction assumed directly.
-
-```{note}
-Effective GLV conversion is currently documented as a mathematical workflow;
-DigiMicPy does not yet expose a `calculate_elv_params` helper.
-```
+Effective GLV reduction is not part of the current DigiMicPy API. Its
+scientific definition and interpretation are maintained in the
+[platform workflow](https://digimic.org/workflows/effective-glv/).
