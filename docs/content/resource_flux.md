@@ -1,6 +1,6 @@
 # DigiMicPy resource-flux recipe
 
-The [platform resource-flux workflow](https://digimic.org/workflows/resource-flux/)
+The [platform resource-flux workflow](https://digimicorg.github.io/workflows/resource-flux/)
 defines the quantities and reporting conventions. DigiMicPy does not currently
 provide a resource-flux helper; calculate fluxes explicitly from a state and the
 validated parameter arrays.

@@ -1,6 +1,6 @@
 # DigiMicPy carbon-use-efficiency recipe
 
-The [platform CUE workflow](https://digimic.org/workflows/carbon-use-efficiency/)
+The [platform CUE workflow](https://digimicorg.github.io/workflows/carbon-use-efficiency/)
 owns the definitions, reference-environment choices, interpretation, and
 reporting guidance. DigiMicPy does not currently expose a CUE helper; the
 calculation uses public parameter arrays and a solver endpoint.

@@ -16,4 +16,4 @@ Open an issue before starting a substantial model extension so its equations,
 units, state layout, and compatibility expectations can be agreed first.
 
 For project-wide support, funding, training, team, or contact information, use
-the [DigiMic platform support page](https://digimic.org/support/).
+the [DigiMic platform support page](https://digimicorg.github.io/support/).

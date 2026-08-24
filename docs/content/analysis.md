@@ -47,4 +47,4 @@ to equilibrium.
 `micrm_rhs`. DigiMicPy does not currently provide Jacobian, effective GLV,
 stability, reactivity, or feasibility helpers. The scientific definitions and
 reporting guidance are maintained in the
-[platform stability workflow](https://digimic.org/workflows/stability/).
+[platform stability workflow](https://digimicorg.github.io/workflows/stability/).
