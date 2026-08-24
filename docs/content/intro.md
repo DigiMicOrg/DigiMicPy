@@ -7,7 +7,7 @@ conservative coupling between spatial patches.
 
 For the project vision, shared scientific workflows, implementation comparison,
 training resources, team, and support, visit the
-[DigiMic platform site](https://digimic.org/).
+[DigiMic platform site](https://digimicorg.github.io/).
 
 ## Implemented and tested
 
@@ -30,7 +30,7 @@ This documentation records how DigiMicPy behaves: installation, array shapes,
 state ordering, validation, solver use, implemented extensions, and recipes
 that operate on package outputs. Shared scientific definitions and
 interpretation live in the
-[platform workflows](https://digimic.org/workflows/) and are linked from the
+[platform workflows](https://digimicorg.github.io/workflows/) and are linked from the
 relevant recipe.
 
 ```{important}

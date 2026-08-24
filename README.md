@@ -141,9 +141,9 @@ the public API.
 
 ## Documentation
 
-The [DigiMicPy package documentation](https://digimic.org/DigiMicPy/) covers
+The [DigiMicPy package documentation](https://digimic.org/) covers
 installation, the implemented model and API, executable examples, and
-Python-specific recipes. The [DigiMic platform site](https://digimic.org/)
+Python-specific recipes. The [DigiMic platform site](https://digimicorg.github.io/)
 owns the project overview, shared scientific workflows, training directory,
 team, funding, and contact information.
 

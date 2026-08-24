@@ -1,6 +1,6 @@
 # DigiMicPy coalescence recipe
 
-The [platform coalescence workflow](https://digimic.org/workflows/coalescence/)
+The [platform coalescence workflow](https://digimicorg.github.io/workflows/coalescence/)
 defines the scientific assumptions, resource mapping, metrics, interpretation,
 and reporting requirements. This page only shows how to combine compatible
 DigiMicPy parameter objects with the current public API.

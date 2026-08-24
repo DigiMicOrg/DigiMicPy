@@ -1,6 +1,6 @@
 # Numerical Jacobian recipe
 
-The [platform stability workflow](https://digimic.org/workflows/stability/)
+The [platform stability workflow](https://digimicorg.github.io/workflows/stability/)
 defines equilibrium checks, local stability, reactivity, feasibility, and
 reporting requirements. DigiMicPy has no public Jacobian or stability helper,
 but its pure `micrm_rhs` can be differentiated numerically.

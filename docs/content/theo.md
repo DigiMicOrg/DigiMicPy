@@ -2,8 +2,9 @@
 
 This page records the equations implemented by DigiMicPy and maps their symbols
 to the public parameter object. For platform-level motivation and shared
-scientific workflows, see the [DigiMic project overview](https://digimic.org/about/)
-and [workflow documentation](https://digimic.org/workflows/).
+scientific workflows, see the
+[DigiMic project overview](https://digimicorg.github.io/about/) and
+[workflow documentation](https://digimicorg.github.io/workflows/).
 
 ```{figure} figures/MiCRM.png
 :name: micrm-framework
@@ -68,4 +69,4 @@ The main controls are:
 
 Effective GLV reduction is not part of the current DigiMicPy API. Its
 scientific definition and interpretation are maintained in the
-[platform workflow](https://digimic.org/workflows/effective-glv/).
+[platform workflow](https://digimicorg.github.io/workflows/effective-glv/).
