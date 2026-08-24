@@ -39,7 +39,9 @@ $$
 = \frac{G_i^0 - m_i}{U_i^0}.
 $$
 
-The CUE coalescence reference code uses this net form because maintenance reduces the carbon available for population growth.
+Use this net form when maintenance should reduce the carbon available for
+population growth. DigiMicPy does not yet package a dedicated CUE helper, so the
+calculation workflow below remains explicit NumPy code.
 
 ## Biomass-weighted community CUE
 
@@ -123,5 +125,4 @@ community_cue_flux = np.average(
     weights=C_eq[survivors] * Ui0[survivors],
 )
 ```
-
 

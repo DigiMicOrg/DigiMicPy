@@ -5,13 +5,14 @@ title: DigiMic
 copyright: "2026, DigiMic Collective"
 logo: logo.png
 
-exclude_patterns:
-  - content/analysisinfo.ipynb
+only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 120
+  allow_errors: false
 
 # Define the name of the latex output file for PDF builds
 latex:

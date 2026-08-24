@@ -21,6 +21,12 @@ def _state_array(
     require_nonnegative: bool = False,
 ) -> FloatArray:
     try:
+        raw = np.asanyarray(state)
+    except (TypeError, ValueError) as error:
+        raise ValueError("state must be a one-dimensional numeric array") from error
+    if np.iscomplexobj(raw):
+        raise ValueError("state must contain only real values")
+    try:
         state_array = np.array(state, dtype=float, copy=True)
     except (TypeError, ValueError) as error:
         raise ValueError("state must be a one-dimensional numeric array") from error

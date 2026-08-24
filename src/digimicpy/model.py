@@ -14,6 +14,12 @@ FloatArray = NDArray[np.float64]
 
 def _float_array(name: str, values: ArrayLike) -> FloatArray:
     try:
+        raw = np.asanyarray(values)
+    except (TypeError, ValueError) as error:
+        raise ValueError(f"{name} must be a rectangular numeric array") from error
+    if np.iscomplexobj(raw):
+        raise ValueError(f"{name} must contain only real values")
+    try:
         array = np.array(values, dtype=float, copy=True)
     except (TypeError, ValueError) as error:
         raise ValueError(f"{name} must be a rectangular numeric array") from error
