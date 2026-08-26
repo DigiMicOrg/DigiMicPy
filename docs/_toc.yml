@@ -4,20 +4,16 @@
 format: jb-book
 root: content/intro
 chapters:
+- file: content/useinfo
 - file: content/theo
 - file: content/details
-- file: content/useinfo
+- file: content/api
 - file: content/advanced_usage
   sections:
   - file: content/coalescence
   - file: content/cue
-  - file: content/temperature
   - file: content/resource_flux
 - file: content/analysis
   sections:
-  - file: content/glv
   - file: content/micrm_stability
-  - file: content/glv_stability
-- file: content/microbial_growth_tpc_predictor_intro
 - file: content/support
-- file: content/contact
