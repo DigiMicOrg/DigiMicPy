@@ -1,19 +1,19 @@
-# Support
+# Getting help with DigiMicPy
 
+Use the [DigiMicPy issue tracker](https://github.com/DigiMicOrg/DigiMicPy/issues)
+for reproducible bugs, API questions, documentation errors, and package feature
+requests.
 
-## Funding
+Include:
 
-- [The Michael Uren Foundation](https://register-of-charities.charitycommission.gov.uk/en/charity-search/?p_p_id=uk_gov_ccew_onereg_charitydetails_web_portlet_CharityDetailsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_uk_gov_ccew_onereg_charitydetails_web_portlet_CharityDetailsPortlet_regId=1094102&_uk_gov_ccew_onereg_charitydetails_web_portlet_CharityDetailsPortlet_subId=0)
-- [Microbiome Green Revolution](https://microbiomerevolution.org/)
+- the DigiMicPy commit or release and Python version;
+- a minimal parameter construction and solver call;
+- array shapes and relevant indices;
+- the complete exception or unexpected result; and
+- expected behaviour and the scientific convention being used.
 
+Open an issue before starting a substantial model extension so its equations,
+units, state layout, and compatibility expectations can be agreed first.
 
-## Resources
-
-- [The Multilingual Quantitative Biologist](https://mulquabio.github.io/MQB/intro.html)
-
-
-
-## Contributors
-
-- [Yan Zhu](https://profiles.imperial.ac.uk/yan.zhu)
-- [Samraat Pawar](https://profiles.imperial.ac.uk/s.pawar)
+For project-wide support, funding, training, team, or contact information, use
+the [DigiMic platform support page](https://digimicorg.github.io/support/).

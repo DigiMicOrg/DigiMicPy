@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: DigiMic
+title: DigiMicPy
 copyright: "2026, DigiMic Collective"
 logo: logo.png
 
@@ -34,6 +34,11 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+  config:
+    html_extra_path:
+      - redirects
 
 
 parse:

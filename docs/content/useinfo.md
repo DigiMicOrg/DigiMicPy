@@ -9,10 +9,17 @@ kernelspec:
   name: python3
 ---
 
-# Basic usage
+# Installation and basic usage
 
-This executable example generates a modular community, constructs validated
-parameters, integrates MiCRM, and plots the trajectories.
+DigiMicPy currently installs from a source checkout. From the repository root,
+create an environment with Python 3.11 or later and run:
+
+```bash
+python -m pip install -e ".[examples]"
+```
+
+The executable example below generates a modular community, constructs
+validated parameters, integrates MiCRM, and plots the trajectories.
 
 ## 1. Generate community parameters
 

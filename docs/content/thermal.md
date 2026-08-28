@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Temperature control
+# Fixed-temperature scaling
 
 DigiMicPy implements fixed-temperature scaling of consumer uptake and mortality.
 An existing `MiCRMParameters` object is interpreted as the parameter set at a
@@ -128,6 +128,9 @@ per patch and pass them to `solve_spatial_micrm`; see {doc}`spatial`.
 - Avoid extrapolation beyond the fitted temperature range.
 - Separate acute physiological scaling from adaptation or species sorting.
 - Report which parameter families respond to temperature.
+
+For shared scientific assumptions, interpretation, and reporting guidance, see
+the [platform temperature workflow](https://digimicorg.github.io/workflows/temperature/).
 
 ## References
 

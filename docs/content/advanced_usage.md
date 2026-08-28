@@ -1,17 +1,16 @@
-# Advanced usage
+# DigiMicPy recipes
 
-These pages describe DigiMic extensions that go beyond a single baseline MiCRM run. They are written as theory and usage notes first, so the web documentation can be useful before every helper function is wrapped into the Python package.
+These pages document implemented extensions and calculations that can be
+performed with DigiMicPy's public parameter objects and solver outputs:
 
-```{important}
-Temperature scaling and conservative spatial patches have tested package APIs.
-Coalescence, carbon-use-efficiency, and resource-flux pages currently describe
-manual NumPy workflows rather than dedicated `digimicpy` helper functions.
-```
+- {doc}`thermal` applies fixed-temperature scaling to uptake and mortality;
+- {doc}`spatial` couples labeled MiCRM patches through conservative transport;
+- {doc}`coalescence` combines compatible parameter objects and parental states;
+- {doc}`cue` calculates carbon-use-efficiency summaries; and
+- {doc}`resource_flux` calculates uptake, retention, leakage, and maintenance
+  fluxes.
 
-Use this section when you want to:
-
-- merge independently assembled microbial communities;
-- calculate species-level or community-level carbon use efficiency;
-- introduce temperature-dependent traits and environmental regimes;
-- couple matching consumers and resources across spatial patches;
-- quantify resource-processing fluxes through uptake, retention, leakage, and maintenance.
+The thermal and spatial pages describe dedicated `digimicpy` APIs. The
+remaining calculations are explicit recipes rather than additional package
+functions. Each page links to the platform-owned workflow for shared scientific
+assumptions, interpretation, and reporting guidance.

@@ -1,10 +1,10 @@
 # Technical details
 
-![DigiMic workflow](figures/workflow.png)
+![DigiMicPy simulation workflow](figures/workflow.png)
 
 ## Simulation workflow
 
-A package-based simulation has four steps:
+A package simulation has four steps:
 
 1. Generate or supply ecological parameter arrays.
 2. Construct a validated `MiCRMParameters` object.
@@ -20,8 +20,7 @@ consumers = state[:parameters.n_consumers]
 resources = state[parameters.n_consumers:]
 ```
 
-`micrm_rhs` returns derivatives in the same order. Spatial simulations repeat
-this consumer-then-resource block for every patch.
+`micrm_rhs` returns derivatives in the same order.
 
 ## Parameter shapes and validation
 
@@ -33,13 +32,16 @@ this consumer-then-resource block for every patch.
 | `resource_decay` | `(M,)` | finite and nonnegative |
 | `leakage` | `(N, M, M)` | finite, nonnegative, and row-normalised |
 | `leakage_fraction` | stored as `(N, M)` | between zero and one; `(M,)` inputs are broadcast |
-| `consumer_ids` | optional `(N,)` | unique and hashable |
-| `resource_ids` | optional `(M,)` | unique and hashable |
+| `consumer_ids` | optional `(N,)` | unique, hashable labels |
+| `resource_ids` | optional `(M,)` | unique, hashable labels |
 
-A resource-vector leakage fraction is broadcast across consumers. Numeric inputs
-are copied into floating-point arrays and exposed read-only so later mutation of
-an input array cannot silently change a model. Identifiers are stored as tuples;
-spatial transport requires them for the variables that diffuse.
+A resource-vector leakage fraction is broadcast across consumers. Numeric
+inputs are copied into floating-point arrays and exposed read-only so later
+mutation of an input array cannot silently change a model.
+
+Spatial transport requires explicit identifiers for every transported consumer
+or resource. Their values and order must match across patches so each flux is
+applied to the same state variable.
 
 ## Reproducible parameter generation
 
@@ -56,8 +58,8 @@ uptake = modular_uptake(
 )
 ```
 
-Passing the same seed to a new generator reproduces the same result. The package
-does not read or advance NumPy's legacy global random state.
+Passing the same seed to a new generator reproduces the same result. The
+package does not read or advance NumPy's legacy global random state.
 
 ## Numerical integration
 
@@ -70,16 +72,5 @@ Always inspect:
 
 - `result.success` and `result.message`;
 - the final derivative norm before treating an endpoint as equilibrium;
-- minimum consumer and resource values for numerical undershoot;
+- minimum consumer and resource values for numerical undershoot; and
 - sensitivity to tolerances for stiff or near-extinction trajectories.
-
-## Temperature and spatial composition
-
-`temperature_adjusted_parameters` creates a new fixed-temperature parameter
-object from reference-temperature rates. `solve_spatial_micrm` accepts one
-parameter object per patch, so the two APIs compose without changing the core
-equations. See {doc}`temperature` and {doc}`spatial` for their assumptions.
-
-For genuinely time-varying temperature, define a custom non-autonomous RHS that
-evaluates parameters at each solver time. The fixed-parameter solver does not
-silently recalculate traits during integration.
