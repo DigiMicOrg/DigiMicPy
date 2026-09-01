@@ -10,6 +10,8 @@ chapters:
 - file: content/api
 - file: content/advanced_usage
   sections:
+  - file: content/thermal
+  - file: content/spatial
   - file: content/coalescence
   - file: content/cue
   - file: content/resource_flux

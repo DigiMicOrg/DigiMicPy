@@ -22,3 +22,27 @@ the API docstrings.
 
 All random generators accept `rng=np.random.default_rng(seed)`. Omitting `rng`
 creates an independent generator rather than using NumPy's global random state.
+
+## Fixed-temperature traits
+
+| Symbol | Purpose |
+|---|---|
+| `BOLTZMANN_CONSTANT` | Boltzmann constant in electronvolts per kelvin |
+| `thermal_performance(...)` | Evaluate the modified Sharpe-Schoolfield curve |
+| `thermal_scaling_factor(...)` | Calculate performance relative to a reference temperature |
+| `temperature_adjusted_parameters(...)` | Scale uptake and mortality in a new parameter object |
+
+Temperatures must be absolute. With the default Boltzmann constant, activation
+and deactivation energies are in electronvolts and temperature is in kelvin.
+
+## Spatial patches
+
+| Symbol | Purpose |
+|---|---|
+| `distance_connectivity(...)` | Build symmetric exponential distance-decay weights |
+| `spatial_micrm_rhs(...)` | Evaluate local dynamics plus conservative transport |
+| `solve_spatial_micrm(...)` | Integrate a fixed network of MiCRM patches |
+
+The spatial API requires explicit, identical ordered IDs for every transported
+consumer or resource, shared dimensions, undirected connectivity, and diffusion
+coefficients shared across patches.

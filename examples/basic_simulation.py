@@ -87,7 +87,10 @@ def main() -> None:
     parameters = build_parameters()
     result = run_simulation()
     plot_result(result, parameters.n_consumers)
-    plt.show()
+    if plt.get_backend().lower() == "agg":
+        plt.close()
+    else:
+        plt.show()
 
 
 if __name__ == "__main__":

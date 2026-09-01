@@ -32,10 +32,16 @@ resources = state[parameters.n_consumers:]
 | `resource_decay` | `(M,)` | finite and nonnegative |
 | `leakage` | `(N, M, M)` | finite, nonnegative, and row-normalised |
 | `leakage_fraction` | stored as `(N, M)` | between zero and one; `(M,)` inputs are broadcast |
+| `consumer_ids` | optional `(N,)` | unique, hashable labels |
+| `resource_ids` | optional `(M,)` | unique, hashable labels |
 
 A resource-vector leakage fraction is broadcast across consumers. Numeric
 inputs are copied into floating-point arrays and exposed read-only so later
 mutation of an input array cannot silently change a model.
+
+Spatial transport requires explicit identifiers for every transported consumer
+or resource. Their values and order must match across patches so each flux is
+applied to the same state variable.
 
 ## Reproducible parameter generation
 

@@ -1,0 +1,13 @@
+# Repository-wide fallback. At least one listed owner must review future changes.
+* @mhasoba @yanzhu624
+
+# Project documentation and automation.
+/README.md @mhasoba @yanzhu624
+/docs/ @mhasoba @yanzhu624
+/.github/ @mhasoba @yanzhu624
+
+# Thermal and spatial model ownership.
+/src/digimicpy/thermal.py @chanli01 @mhasoba @yanzhu624
+/src/digimicpy/spatial.py @chanli01 @mhasoba @yanzhu624
+/docs/content/thermal.md @chanli01 @mhasoba @yanzhu624
+/docs/content/spatial.md @chanli01 @mhasoba @yanzhu624

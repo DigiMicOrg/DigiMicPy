@@ -3,7 +3,8 @@
 DigiMicPy is the Python package for constructing and simulating microbial
 consumer-resource models. The current public API provides validated MiCRM
 parameters, reproducible modular uptake and leakage generators, a pure model
-right-hand side, and a SciPy integration wrapper.
+right-hand side, fixed-temperature trait scaling, conservative spatial
+transport, and SciPy integration wrappers.
 
 For the project vision, package directory, shared scientific workflows,
 training resources, team, funding, and general support, visit the
@@ -18,6 +19,8 @@ training resources, team, funding, and general support, visit the
 | {doc}`details` | State layout, array shapes, validation, and solver behaviour |
 | {doc}`api` | Supported top-level Python interface |
 | {doc}`advanced_usage` | Explicit recipes using DigiMicPy parameters and outputs |
+| {doc}`thermal` | Fixed-temperature scaling implemented by DigiMicPy |
+| {doc}`spatial` | Conservative coupling between labeled MiCRM patches |
 | {doc}`analysis` | Endpoint and numerical stability diagnostics |
 | {doc}`support` | Package issue-reporting guidance |
 
