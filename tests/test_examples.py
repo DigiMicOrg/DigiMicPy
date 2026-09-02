@@ -32,6 +32,9 @@ class ExampleTests(unittest.TestCase):
     def test_thermal_spatial_simulation_runs_headlessly(self):
         self.run_example("thermal_spatial_simulation.py")
 
+    def test_heterogeneous_spatial_simulation_runs_headlessly(self):
+        self.run_example("heterogeneous_spatial_simulation.py")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -4,7 +4,8 @@ DigiMicPy is a Python package for constructing and simulating microbial
 consumer-resource models. It provides validated MiCRM parameters, reproducible
 modular uptake and leakage generators, a pure right-hand side, and a SciPy
 integration wrapper. It also supports fixed-temperature trait scaling and
-conservative transport between labeled spatial patches.
+ID-aware, volume-conservative transport between spatial patches with equal or
+heterogeneous local communities.
 
 ## Install from source
 
@@ -63,6 +64,10 @@ if not result.success:
 
 See [`examples/thermal_spatial_simulation.py`](examples/thermal_spatial_simulation.py)
 for coupled patches with different fixed temperatures.
+See
+[`examples/heterogeneous_spatial_simulation.py`](examples/heterogeneous_spatial_simulation.py)
+for named patches with different consumer and resource pools, reordered IDs,
+unequal volumes and explicit potential colonists.
 
 ## Documentation
 
@@ -77,6 +82,7 @@ for coupled patches with different fixed temperatures.
 python -m pip install -e ".[dev,examples,docs]"
 python -m pytest
 python examples/thermal_spatial_simulation.py
+python examples/heterogeneous_spatial_simulation.py
 jupyter-book build docs --warningiserror
 python -m build
 ```

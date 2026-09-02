@@ -11,3 +11,5 @@
 /src/digimicpy/spatial.py @chanli01 @mhasoba @yanzhu624
 /docs/content/thermal.md @chanli01 @mhasoba @yanzhu624
 /docs/content/spatial.md @chanli01 @mhasoba @yanzhu624
+/examples/heterogeneous_spatial_simulation.py @chanli01 @mhasoba @yanzhu624
+/tests/test_spatial.py @chanli01 @mhasoba @yanzhu624
