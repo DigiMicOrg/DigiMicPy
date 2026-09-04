@@ -39,10 +39,14 @@ and deactivation energies are in electronvolts and temperature is in kelvin.
 
 | Symbol | Purpose |
 |---|---|
+| `SpatialPatch(parameters, volume=1.0, name=None)` | Define one labeled local community and its volume |
+| `SpatialLayout(patches)` | Compile heterogeneous state slices, ID maps and packing helpers |
 | `distance_connectivity(...)` | Build symmetric exponential distance-decay weights |
 | `spatial_micrm_rhs(...)` | Evaluate local dynamics plus conservative transport |
 | `solve_spatial_micrm(...)` | Integrate a fixed network of MiCRM patches |
 
-The spatial API requires explicit, identical ordered IDs for every transported
-consumer or resource, shared dimensions, undirected connectivity, and diffusion
-coefficients shared across patches.
+`SpatialLayout.pack_state(...)` and `unpack_state(...)` convert between a flat
+solver state and heterogeneous per-patch arrays. Transport uses explicit IDs,
+symmetric conductance and volume-aware paired flux. Scalar and ID-keyed
+diffusion support different local identity sets; positional vectors remain
+available only when every patch has identical ordered IDs.
